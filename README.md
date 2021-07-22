@@ -2,10 +2,8 @@
 
 ## Määrittelydokumentti
 
-## Työaikakirjanpito
-
-[Työaikakirjanpito](https://github.com/juliapalorinne/mazegenerationandsolving/maarittely.md)
+[Työaikakirjanpito](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/maarittely.md)
 
 ## Työaikakirjanpito
 
-[Työaikakirjanpito](https://github.com/juliapalorinne/mazegenerationandsolving/documentation/tyoaikakirjanpito.md)
+[Työaikakirjanpito](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/tyoaikakirjanpito.md)
