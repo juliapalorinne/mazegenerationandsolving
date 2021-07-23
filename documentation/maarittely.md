@@ -1,13 +1,14 @@
 # Määrittelydokumentti
 
 Tekijä: Julia Palorinne (TKT)
+Käytetty kieli: Java
 
-<br></br>
+<br>
 
 Työni tarkoitus on tarkastella ja vertailla algoritmeja, joilla luodaan ja 
 ratkaistaan labyrintteja.
 
-<br></br>
+</br>
 
 ## Algoritmit
 
@@ -42,7 +43,12 @@ labyrintteja.
 
 ## Aika- ja tilavaativuudet
 
-<br></br>
+<br>
 
 ## Lähteet
+
+* Antti Laaksonen: Tietorakenteet ja algoritmit (kevät 2020)
+* https://en.wikipedia.org/wiki/Maze_generation_algorithm (luettu 23.7.2021)
+* https://en.wikipedia.org/wiki/Maze-solving_algorithm (luettu 23.7.2021)
+
 <br></br>
