@@ -17,7 +17,6 @@ ratkaistaan labyrintteja.
 
 Tarkastelen ja vertailen seuraavia labyrinttien luomiseen käytettäviä algoritmeja:
 * Satunnaistettu syvyyshaku (Randomized depth-first search)
-* Rekursiivinen haku
 * Satunnaistettu Kruskalin algoritmi (Randomized Kruskal's algorithm)
 
 <br>
@@ -62,7 +61,7 @@ Algoritmi merkitsee, missä osissa labyrinttia on jo käynyt. Jos se saapuu sama
 
 
 ### Shortest path algorithm
-Esim. leveyshaku tai A*-algoritmi. 
+Esim. jokin leveyshaun tai A*-algoritmin sovellus. Tämän algoritmin valinta on vielä kesken.
 
 
 <br>
