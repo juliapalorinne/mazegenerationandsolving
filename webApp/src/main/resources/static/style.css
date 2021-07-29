@@ -1,0 +1,8 @@
+body { background-color:beige }
+
+#maze {
+    width: 600px;
+    height: 400px;
+    background-color:black;
+    margin: 10px;
+}

@@ -15,6 +15,8 @@
 
 [Viikkoraportti 1](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/viikkoraportti1.md)
 
+[Viikkoraportti 2](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/viikkoraportti2.md)
+
  <br>
 
 ## Työaikakirjanpito
