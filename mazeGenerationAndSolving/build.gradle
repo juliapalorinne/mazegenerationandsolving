@@ -1,7 +1,10 @@
-apply plugin: 'java'
-apply plugin: 'jacoco'
-apply plugin: 'application'
-apply plugin: 'checkstyle'
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+    id 'checkstyle'
+//    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
 
 mainClassName = 'mazeGenerationAndSolving.Main'
 
@@ -9,8 +12,20 @@ repositories {
     jcenter()
 }
 
+project.ext {
+    cucumberVersion = '6.8.1'
+    junitVersion = '4.13'
+}
+
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
+    testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
+    testCompile 'junit:junit:' + junitVersion
+}
+
+test {
+    useJUnit()
+    maxHeapSize = '1G'
 }
 
 jacocoTestReport {
