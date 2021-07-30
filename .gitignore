@@ -3,8 +3,7 @@
 
 /mazeGenerationAndSolving/.gradle/
 /webApp/.gradle/
-.gradle/
-.nb-gradle/
+/.gradle/
 
 # Ignore Gradle build output directory
 
