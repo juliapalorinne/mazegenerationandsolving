@@ -6,11 +6,7 @@ plugins {
 //    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
-mainClassName = 'mazeGenerationAndSolving.Main'
-
-repositories {
-    jcenter()
-}
+mainClassName = 'maze.Main'
 
 project.ext {
     cucumberVersion = '6.8.1'
@@ -18,15 +14,22 @@ project.ext {
 }
 
 dependencies {
-    testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
-    testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
-    testCompile 'junit:junit:' + junitVersion
+    testImplementation 'io.cucumber:cucumber-java:' + cucumberVersion
+    testImplementation 'io.cucumber:cucumber-junit:' + cucumberVersion
+    testImplementation 'junit:junit:' + junitVersion
 }
 
-test {
-    useJUnit()
-    maxHeapSize = '1G'
+
+repositories {
+    mavenCentral()
+    jcenter()
 }
+
+
+//test {
+//    useJUnit()
+//    maxHeapSize = '1G'
+//}
 
 jacocoTestReport {
     reports {
@@ -42,4 +45,8 @@ checkstyle {
     toolVersion '8.37'
 }
 
-
+jar {
+    manifest {
+        attributes 'Main-Class': 'maze.Main'
+    }
+}
