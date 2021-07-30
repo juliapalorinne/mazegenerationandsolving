@@ -28,6 +28,7 @@ public class DepthfirstSearch {
     
     public void run() {
         generateRoutes();
+        maze.printMaze();
     }
 
     public void generateNewMaze(int width, int height) {
@@ -49,12 +50,11 @@ public class DepthfirstSearch {
     public void generateRoutes() {
         this.x = 0;
         this.y = 0;
+        this.stack = new Stack();
         maze.getCell(x, y).visit();
         visited++;
         
         chooseDirection();
-        stack.add(maze.getCell(x, y));
-                
         
         while (visited < cells) {
             search();
@@ -63,15 +63,21 @@ public class DepthfirstSearch {
     
     
     public void search() {
+        System.out.println(x + ", " + y);
+        maze.getCell(x, y).visit();
+        visited++;
         
-        while (!stack.isEmpty()) {
-            maze.getCell(x, y).visit();
-            visited++;
-            chooseDirection();
-            stack.add(maze.getCell(x, y));
-            search();
+        if (visited < cells) {
+            if (checkIfAllVisited() == true) {
+                Cell c = (Cell) stack.pop();
+                x = c.getX();
+                y = c.getY();
+                return;
+            } else {
+                chooseDirection();
+                search();
+            }
         }
-        
     }
     
     
@@ -86,6 +92,8 @@ public class DepthfirstSearch {
             if (number == 0) {
                 if (y > 0) {
                     if (!checkIfVisited(number)) {
+                        maze.getCell(x, y).removeUpperWall();
+                        stack.add(maze.getCell(x, y));
                         y--;
                         chosen = true;
                     }
@@ -93,20 +101,26 @@ public class DepthfirstSearch {
             } else if (number == 1) {
                 if (x > 0) {
                     if (!checkIfVisited(number)) {
+                        maze.getCell(x, y).removeLeftWall();
+                        stack.add(maze.getCell(x, y));
                         x--;
                         chosen = true;
                     }
                 }
             } else if (number == 2) {
-                if (x < maze.getWidth() - 2) {
+                if (x < maze.getWidth() - 1) {
                     if (!checkIfVisited(number)) {
+                        maze.getCell(x, y).removeLowerWall();
+                        stack.add(maze.getCell(x, y));
                         y++;
                         chosen = true;
                     }
                 }
             } else if (number == 3) {
-                if (y < maze.getHeight() - 2) {
+                if (y < maze.getHeight() - 1) {
                     if (!checkIfVisited(number)) {
+                        maze.getCell(x, y).removeRightWall();
+                        stack.add(maze.getCell(x, y));
                         x++;
                         chosen = true;
                     }
@@ -117,7 +131,7 @@ public class DepthfirstSearch {
     
     public int getRandomNumber() {
         Random r = new Random();
-        int number = r.nextInt(3);
+        int number = r.nextInt(4);
         return number;
     }
     
@@ -137,5 +151,32 @@ public class DepthfirstSearch {
             return false;
         }
         return true;
+    }
+    
+    public boolean checkIfAllVisited() {
+        boolean upper = false;
+        boolean left = false;
+        boolean lower = false;
+        boolean right = false;
+        
+        
+        if (y == 0 || maze.getCell(x, y - 1).numberOfVisits() > 0) {
+            upper = true;
+        }
+        if (x == 0 || maze.getCell(x - 1, y).numberOfVisits() > 0) {
+            left = true;
+        }
+        if (y == maze.getHeight() - 1 || maze.getCell(x, y + 1).numberOfVisits() > 0) {
+            lower = true;
+        }
+        if (x == maze.getWidth() - 1 || maze.getCell(x + 1, y).numberOfVisits() > 0) {
+            right = true;
+        }
+        
+        if (upper == true && left == true && lower == true &&  right ==  true) {
+            return true;
+        }
+        
+        return false;
     }
 }

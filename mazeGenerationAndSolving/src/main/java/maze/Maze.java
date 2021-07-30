@@ -63,4 +63,35 @@ public class Maze {
     public int getHeight() {
         return this.height;
     }
+    
+    public void printMaze() {
+        
+        for(int i = 0; i < width; i++) {
+            System.out.print("##");
+        }
+        System.out.print("#\r\n");
+        
+        for (int j = 0; j < height; j++) {
+            String s = "";
+            
+            for (int i = 0; i < width; i++) {
+                Cell c = cells[j][i];
+                
+                if (c.getRightWall() == true) {
+                    System.out.print("#");
+                } else {
+                    System.out.print("o");
+                }
+                System.out.print("o");
+                
+                if (c.getLowerWall() == true) {
+                    s = s + "##";
+                } else {
+                    s = s + "#o";
+                }
+            }
+            System.out.print("#\r\n");
+            System.out.println(s + "#");
+        }
+    }
 }
