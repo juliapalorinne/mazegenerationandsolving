@@ -9,5 +9,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 27.7.2021 | Yhteensopivuusongelmien ratkominen ja konfigurointi | 4 h
 28.7.2021 | Jatkoa eilisestä sekä Spring Boot -projektin luominen | 3 h
 29.7.2021 | Web-käyttöliittymän aloitus sekä algoritmien ohjelmoinnin aloitus | 5 h
+29.7.2021 | Algoritmien ohjelmointi, testit, jacvadoc, checkstyle ja jacoco | 7,5 h
  | | 
-**Yhteensä** | 19,5 h | 
+**Yhteensä** | 27 h | 
