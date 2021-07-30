@@ -1,7 +1,7 @@
 package maze;
 
-/**
- * Class creates an empty maze with given dimensions
+/** Class creates an empty maze with given dimensions.
+ *
  * @author julia
  */
 public class Maze {
@@ -12,8 +12,8 @@ public class Maze {
     public Cell[][] cells;
     
     
-    /**
-     * Creates a maze with given cells
+    /** Creates a maze with given cells.
+     *
      * @param cells array of cells
      */
     public Maze(Cell[][] cells) {
@@ -22,8 +22,8 @@ public class Maze {
         this.width = cells[0].length;
     }
     
-    /**
-     * Removes a wall from the given cell and its neighbour(s)
+    /** Removes a wall from the given cell and its neighbour(s).
+     *
      * @param cell the cell where the wall is removed
      */
     public void removeWall(Cell cell) {
@@ -46,8 +46,8 @@ public class Maze {
         }
     }
     
-    /**
-     * Returns the cell with given coordinates
+    /** Returns the cell with given coordinates.
+     *
      * @param x coordinate
      * @param y coordinate
      * @return a cell

@@ -1,5 +1,9 @@
 package maze;
 
+/** Class handles cells within the maze.
+ *
+ * @author julia
+ */
 public class Cell {
     
     private int x;

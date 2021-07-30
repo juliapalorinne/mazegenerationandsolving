@@ -1,7 +1,12 @@
 package maze;
 
-import java.util.*;
+import java.util.Random;
+import java.util.Stack;
 
+/** Randomized depth-first search for creating a maze.
+ *
+ * @author julia
+ */
 public class DepthfirstSearch {  
     
     public Maze maze;
@@ -12,7 +17,11 @@ public class DepthfirstSearch {
     public int cells;
 
     
-    
+    /** Create a new maze with given dimensions.
+     *
+     * @param width of the maze
+     * @param height of the maze
+     */
     public DepthfirstSearch(int width, int height) {
         generateNewMaze(width, height);
     }
@@ -21,7 +30,7 @@ public class DepthfirstSearch {
         generateRoutes();
     }
 
-    private void generateNewMaze(int width, int height) {
+    public void generateNewMaze(int width, int height) {
         this.cells = width * height;
         this.visited = 0;        
         
@@ -103,7 +112,6 @@ public class DepthfirstSearch {
                     }
                 }
             }
-            
         }
     }
     
