@@ -12,7 +12,7 @@ mainClassName = 'main.Main'
 
 repositories {
     mavenCentral()
-    jcenter()
+//    jcenter()
 }
 
 project.ext {
@@ -39,14 +39,15 @@ jar {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = false
+        html.required = false
+//        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
-     afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['main/Main.java'])
-        }))
-    }
+//     afterEvaluate {
+//        classDirectories.setFrom(files(classDirectories.files.collect {
+//            fileTree(dir: it, exclude: ['main/Main.java'])
+//        }))
+//    }
 }
 
 check.dependsOn jacocoTestReport
