@@ -10,6 +10,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 28.7.2021 | Jatkoa eilisestä sekä Spring Boot -projektin luominen | 3 h
 29.7.2021 | Web-käyttöliittymän aloitus sekä algoritmien ohjelmoinnin aloitus | 5 h
 29.7.2021 | Algoritmien ohjelmointi, testit, jacvadoc, checkstyle ja jacoco | 7,5 h
-3.8.2021 | Badget README-tiedostoon | 1 h
+3.8.2021 | Badget README-tiedostoon ja testien korjaus | 2 h
  | | 
-**Yhteensä** | 28 h | 
+**Yhteensä** | 29 h | 
