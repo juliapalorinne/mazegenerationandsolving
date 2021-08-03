@@ -6,7 +6,7 @@ plugins {
 //    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
-mainClassName = 'maze.Main'
+mainClassName = 'main.Main'
 
 project.ext {
     cucumberVersion = '6.8.1'
@@ -36,6 +36,11 @@ jacocoTestReport {
         xml.enabled = true
         html.enabled = true
     }
+//    afterEvaluate {
+//        classDirectories.setFrom(files(classDirectories.files.collect {
+//            fileTree(dir: it, exclude: ['main/**'])
+//        }))
+//    }
 }
 
 check.dependsOn jacocoTestReport
@@ -47,6 +52,6 @@ checkstyle {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'maze.Main'
+        attributes 'Main-Class': 'main.Main'
     }
 }

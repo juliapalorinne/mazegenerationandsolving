@@ -1,4 +1,6 @@
-package maze;
+package main;
+
+import maze.DepthfirstSearch;
 
 
 /**

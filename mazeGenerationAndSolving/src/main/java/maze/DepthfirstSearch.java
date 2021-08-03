@@ -44,13 +44,13 @@ public class DepthfirstSearch {
             }
         }
         this.maze = new Maze(cellArray);
+        this.x = 0;
+        this.y = 0;
+        this.stack = new Stack();
     }
     
     
     public void generateRoutes() {
-        this.x = 0;
-        this.y = 0;
-        this.stack = new Stack();
         maze.getCell(x, y).visit();
         visited++;
         
@@ -72,7 +72,6 @@ public class DepthfirstSearch {
                 Cell c = (Cell) stack.pop();
                 x = c.getX();
                 y = c.getY();
-                return;
             } else {
                 chooseDirection();
                 search();
@@ -90,43 +89,67 @@ public class DepthfirstSearch {
             number = getRandomNumber();
             
             if (number == 0) {
-                if (y > 0) {
-                    if (!checkIfVisited(number)) {
-                        maze.getCell(x, y).removeUpperWall();
-                        stack.add(maze.getCell(x, y));
-                        y--;
-                        chosen = true;
-                    }
-                }
+                chosen = moveUp();
             } else if (number == 1) {
-                if (x > 0) {
-                    if (!checkIfVisited(number)) {
-                        maze.getCell(x, y).removeLeftWall();
-                        stack.add(maze.getCell(x, y));
-                        x--;
-                        chosen = true;
-                    }
-                }
+                chosen = moveLeft();
             } else if (number == 2) {
-                if (x < maze.getWidth() - 1) {
-                    if (!checkIfVisited(number)) {
-                        maze.getCell(x, y).removeLowerWall();
-                        stack.add(maze.getCell(x, y));
-                        y++;
-                        chosen = true;
-                    }
-                }
+                chosen = moveDown();
             } else if (number == 3) {
-                if (y < maze.getHeight() - 1) {
-                    if (!checkIfVisited(number)) {
-                        maze.getCell(x, y).removeRightWall();
-                        stack.add(maze.getCell(x, y));
-                        x++;
-                        chosen = true;
-                    }
-                }
+                chosen = moveRight();
             }
         }
+    }
+    
+    public boolean moveUp() {
+        if (y > 0) {
+            if (!checkIfVisited(0)) {
+                maze.getCell(x, y).removeUpperWall();
+                maze.removeWall(maze.getCell(x, y));
+                stack.add(maze.getCell(x, y));
+                y--;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean moveLeft() {
+        if (x > 0) {
+            if (!checkIfVisited(1)) {
+                maze.getCell(x, y).removeLeftWall();
+                maze.removeWall(maze.getCell(x, y));
+                stack.add(maze.getCell(x, y));
+                x--;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean moveDown() {
+        if (y < maze.getHeight() - 1) {
+            if (!checkIfVisited(2)) {
+                maze.getCell(x, y).removeLowerWall();
+                maze.removeWall(maze.getCell(x, y));
+                stack.add(maze.getCell(x, y));
+                y++;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean moveRight() {
+        if (x < maze.getWidth() - 1) {
+            if (!checkIfVisited(3)) {
+                maze.getCell(x, y).removeRightWall();
+                maze.removeWall(maze.getCell(x, y));
+                stack.add(maze.getCell(x, y));
+                x++;
+                return true;
+            }
+        }
+        return false;
     }
     
     public int getRandomNumber() {

@@ -6,8 +6,8 @@ package maze;
  */
 public class Cell {
     
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private int visited;
     
     private boolean upperWall = true;
@@ -19,7 +19,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
-        visited = 0;
+        this.visited = 0;
     }
     
     public int[] getCoordinates() {
@@ -36,7 +36,7 @@ public class Cell {
     }
     
     public int numberOfVisits() {
-        return visited;
+        return this.visited;
     }
     
     public boolean getUpperWall() {
@@ -56,19 +56,19 @@ public class Cell {
     }
     
     public void removeUpperWall() {
-        upperWall = false;
+        this.upperWall = false;
     }
     
     public void removeLeftWall() {
-        leftWall = false;
+        this.leftWall = false;
     }
     
     public void removeLowerWall() {
-        lowerWall = false;
+        this.lowerWall = false;
     }
     
     public void removeRightWall() {
-        rightWall = false;
+        this.rightWall = false;
     }
     
     public void visit() {
