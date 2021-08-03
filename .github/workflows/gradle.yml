@@ -29,7 +29,7 @@ jobs:
       run: (cd mazeGenerationAndSolving; ./gradlew jacocoTestReport)
     - name: Data to codecov
       run: bash <(curl -s https://codecov.io/bash)
-      - name: Checkstyle
+    - name: Checkstyle
       run: (cd mazeGenerationAndSolving; ./gradlew checkstyleMain)
     - name: Archive checkstyle results
       uses: actions/upload-artifact@v2
