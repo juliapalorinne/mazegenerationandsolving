@@ -25,25 +25,30 @@ public class Maze {
     /** Removes a wall from the given cell and its neighbour(s).
      *
      * @param cell the cell where the wall is removed
+     * @param dir number between 0 and 3 for direction
      */
-    public void removeWall(Cell cell) {
+    public void removeWall(Cell cell, int dir) {
         int x = cell.getX();
         int y = cell.getY();
         
-        cells[y][x] = cell;
-        
-        if (cell.getUpperWall() == false && y > 0) {
+        if (dir == 0 && y > 0) {
+            cell.removeUpperWall();
             cells[y - 1][x].removeLowerWall();
         }
-        if (cell.getLeftWall() == false && x > 0) {
+        if (dir == 1 && x > 0) {
+            cell.removeLeftWall();
             cells[y][x - 1].removeRightWall();
         }
-        if (cell.getLowerWall() == false && y < height - 2) {
+        if (dir == 2 && y < height - 1) {
+            cell.removeLowerWall();
             cells[y + 1][x].removeUpperWall();
         }
-        if (cell.getRightWall() == false && x < width - 2) {
+        if (dir == 3 && x < width - 1) {
+            cell.removeRightWall();
             cells[y][x + 1].removeLeftWall();
         }
+        
+        cells[y][x] = cell;
     }
     
     /** Returns the cell with given coordinates.

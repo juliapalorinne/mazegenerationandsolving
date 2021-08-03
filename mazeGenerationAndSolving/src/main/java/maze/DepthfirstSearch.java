@@ -103,8 +103,7 @@ public class DepthfirstSearch {
     public boolean moveUp() {
         if (y > 0) {
             if (!checkIfVisited(0)) {
-                maze.getCell(x, y).removeUpperWall();
-                maze.removeWall(maze.getCell(x, y));
+                maze.removeWall(maze.getCell(x, y), 0);
                 stack.add(maze.getCell(x, y));
                 y--;
                 return true;
@@ -116,8 +115,7 @@ public class DepthfirstSearch {
     public boolean moveLeft() {
         if (x > 0) {
             if (!checkIfVisited(1)) {
-                maze.getCell(x, y).removeLeftWall();
-                maze.removeWall(maze.getCell(x, y));
+                maze.removeWall(maze.getCell(x, y), 1);
                 stack.add(maze.getCell(x, y));
                 x--;
                 return true;
@@ -129,8 +127,7 @@ public class DepthfirstSearch {
     public boolean moveDown() {
         if (y < maze.getHeight() - 1) {
             if (!checkIfVisited(2)) {
-                maze.getCell(x, y).removeLowerWall();
-                maze.removeWall(maze.getCell(x, y));
+                maze.removeWall(maze.getCell(x, y), 2);
                 stack.add(maze.getCell(x, y));
                 y++;
                 return true;
@@ -142,8 +139,7 @@ public class DepthfirstSearch {
     public boolean moveRight() {
         if (x < maze.getWidth() - 1) {
             if (!checkIfVisited(3)) {
-                maze.getCell(x, y).removeRightWall();
-                maze.removeWall(maze.getCell(x, y));
+                maze.removeWall(maze.getCell(x, y), 3);
                 stack.add(maze.getCell(x, y));
                 x++;
                 return true;

@@ -37,21 +37,24 @@ public class MazeTest {
     @Test
     public void removeWallRemovesCorrectWall() {
         Cell c = new Cell(2, 2);
-        c.removeUpperWall();
-        maze.removeWall(c);
+        maze.removeWall(c, 0);
         assertTrue(maze.getCell(2, 1).getLowerWall() == false);
         
-        c.removeLeftWall();
-        maze.removeWall(c);
+        maze.removeWall(c, 1);
         assertTrue(maze.getCell(1, 2).getRightWall() == false);
         
-        c.removeLowerWall();
-        maze.removeWall(c);
+        maze.removeWall(c, 2);
         assertTrue(maze.getCell(2, 3).getUpperWall() == false);
         
-        c.removeRightWall();
-        maze.removeWall(c);
+        maze.removeWall(c, 3);
         assertTrue(maze.getCell(3, 2).getLeftWall() == false);
+    }
+    
+    @Test
+    public void wallIsNotRemovedFromBorder() {
+        Cell c = new Cell(0, 0);
+        maze.removeWall(c, 0);
+         assertTrue(maze.getCell(0, 0).getUpperWall() == true);
     }
     
     
