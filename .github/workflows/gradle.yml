@@ -22,10 +22,22 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: (cd mazeGenerationAndSolving; chmod +x ./gradlew)
     - name: Test with Gradle
-      run: ./gradlew test
+      run: (cd mazeGenerationAndSolving; ./gradlew test)
     - name: Code coverage rapost
-      run: ./gradlew jacocoTestReport
+      run: (cd mazeGenerationAndSolving; ./gradlew jacocoTestReport)
     - name: Data to codecov
       run: bash <(curl -s https://codecov.io/bash)
+      - name: Checkstyle
+      run: (cd mazeGenerationAndSolving; ./gradlew checkstyleMain)
+    - name: Archive checkstyle results
+      uses: actions/upload-artifact@v2
+      with:
+        name: checkstyle-report
+        path: ./mazeGenerationAndSolving/build/reports/checkstyle/main.html
+    - name: Archive test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-report
+        path: ./mazeGenerationAndSolving/build/reports/tests/test/*
