@@ -18,11 +18,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Grant execute permission for gradlew
-      run: (cd mazeGenerationAndSolving; chmod +x ./gradlew)
     - name: Test with Gradle
-      run: (cd mazeGenerationAndSolving; ./gradlew test)
-    - name: Code coverage report
-      run: (cd mazeGenerationAndSolving; ./gradlew jacocoTestReport)
-    - name: Data to codecov
-      run: (cd mazeGenerationAndSolving; bash <(curl -s https://codecov.io/bash))
+      run: |
+          cd mazeGenerationAndSolving
+          chmod +x ./gradlew
+          ./gradlew test jacocoTestReport
+          bash <(curl -s https://codecov.io/bash)
