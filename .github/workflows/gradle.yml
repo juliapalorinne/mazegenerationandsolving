@@ -26,4 +26,4 @@ jobs:
     - name: Code coverage report
       run: (cd mazeGenerationAndSolving; ./gradlew jacocoTestReport)
     - name: Data to codecov
-      run: bash <(curl -s https://codecov.io/bash)
+      run: (cd mazeGenerationAndSolving; bash <(curl -s https://codecov.io/bash))
