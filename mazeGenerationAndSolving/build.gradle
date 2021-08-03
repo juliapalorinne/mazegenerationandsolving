@@ -8,6 +8,13 @@ plugins {
 
 mainClassName = 'main.Main'
 
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 project.ext {
     cucumberVersion = '6.8.1'
     junitVersion = '4.13'
@@ -19,17 +26,16 @@ dependencies {
     testImplementation 'junit:junit:' + junitVersion
 }
 
-
-repositories {
-    mavenCentral()
-    jcenter()
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
 }
 
-
-//test {
-//    useJUnit()
-//    maxHeapSize = '1G'
-//}
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+}
 
 jacocoTestReport {
     reports {
@@ -50,8 +56,4 @@ checkstyle {
     toolVersion '8.37'
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'main.Main'
-    }
-}
+
