@@ -1,5 +1,7 @@
 # Maze generation and solving
 
+![Java CI with Gradle](https://github.com/juliapalorinne/mazegenerationandsolving/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 ## Työn dokumentaatio
 [Määrittelydokumentti](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/maarittely.md)
 
