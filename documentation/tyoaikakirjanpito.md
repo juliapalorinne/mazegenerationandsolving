@@ -11,5 +11,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 29.7.2021 | Web-käyttöliittymän aloitus sekä algoritmien ohjelmoinnin aloitus | 5 h
 29.7.2021 | Algoritmien ohjelmointi, testit, jacvadoc, checkstyle ja jacoco | 7,5 h
 3.8.2021 | Badget README-tiedostoon, jacocon korjaus ja testejä | 4 h
+5.8.2021 | Ensimmäinen labyrintinluomisalgoritmi valmis ja testattu, ensimmäinen ratkaisualgoritmi aloitettu ja myös sen testit aloitettu | 4,5 h
  | | 
-**Yhteensä** | 31 h | 
+**Yhteensä** | | **35,5 h**
