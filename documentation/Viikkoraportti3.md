@@ -1,0 +1,3 @@
+# Viikkoraportti 3
+
+Tällä viikolla minulla oli hieman heikosti aikaa tälle projektille, mutta tavoitteeni oli saada kaikki toimimaan ensimmäisen haun suhteen ja ehkä aloittaa jotakin seuraavista. Halusin myös saada testikattavuuden hyvälle tasolle ja badget testikattavuudesta ja testien läpimenosta projektin etusivulle Githubiin. Yllättäen näiden badgejen toimimaan saaminen vei varsin runsaasti aikaa ja konfigurointi oli todella haastavaa. Lopulta kaikki kuitenkin toimii ja pääsin loppuviikosta itse projektinkin pariin.
