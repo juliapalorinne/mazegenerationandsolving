@@ -69,10 +69,20 @@ public class Maze {
         return this.height;
     }
     
+    /** Prints the maze.
+     * Character # for wall and o for empty space.
+     */
     public void printMaze() {
         
         for(int i = 0; i < width; i++) {
-            System.out.print("##");
+            if (cells[0][i].getUpperWall() == true) {
+                System.out.print("##");
+            } else if (cells[0][i].checkIfInRoute() == false) {
+                System.out.print("# ");
+            } else {
+                System.out.print("#o");
+            }
+            
         }
         System.out.print("#\r\n");
         
@@ -85,14 +95,19 @@ public class Maze {
                 if (c.getLeftWall() == true) {
                     System.out.print("#");
                 } else {
-                    System.out.print("o");
+                    System.out.print(" ");
                 }
-                System.out.print("o");
+                
+                if (c.checkIfInRoute() == true) {
+                    System.out.print("o");
+                } else {
+                    System.out.print(" ");
+                }
                 
                 if (c.getLowerWall() == true) {
                     s = s + "##";
                 } else {
-                    s = s + "#o";
+                    s = s + "# ";
                 }
             }
             System.out.print("#\r\n");

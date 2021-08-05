@@ -26,8 +26,13 @@ public class DepthfirstSearch {
         generateNewMaze(width, height);
     }
     
+    /** Run the depth-first search algorithm.
+     * Then print the maze.
+     */
     public void run() {
         generateRoutes();
+        maze.getCell(0, 0).removeUpperWall();
+        maze.getCell(maze.getWidth()-1, maze.getHeight()-1).removeLowerWall();
         maze.printMaze();
     }
 

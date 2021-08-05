@@ -13,24 +13,9 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        DepthfirstSearch search = new DepthfirstSearch(10, 10);
+        DepthfirstSearch search = new DepthfirstSearch(20, 20);
         search.run();
-        
-//        int width = 10;
-//        int height = 5;
-//        
-//        Cell[][] cells = new Cell[height][width];
-//        
-//        for (int i = 0; i < width; i++) {
-//            for (int j = 0; j < height; j++) {
-//                Cell cell = new Cell(i, j);
-//                cells[j][i] = cell;
-//            }
-//        }
-//        
-//        Maze maze = new Maze(cells);
-//        
-//        maze.printMaze();
+
         
         
     }

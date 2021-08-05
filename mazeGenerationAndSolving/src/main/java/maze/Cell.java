@@ -9,6 +9,7 @@ public class Cell {
     private final int x;
     private final int y;
     private int visited;
+    private boolean inRoute = false;
     
     private boolean upperWall = true;
     private boolean rightWall = true;
@@ -55,27 +56,49 @@ public class Cell {
         return this.rightWall;
     }
     
+    public boolean checkIfInRoute() {
+        return this.inRoute;
+    }
+    
     public void removeUpperWall() {
         this.upperWall = false;
+    }
+    
+    public void addUpperWall() {
+        this.upperWall = true;
     }
     
     public void removeLeftWall() {
         this.leftWall = false;
     }
     
+    public void addLeftWall() {
+        this.leftWall = true;
+    }
+
     public void removeLowerWall() {
         this.lowerWall = false;
     }
     
+    public void addLowerWall() {
+        this.lowerWall = true;
+    }
+    
     public void removeRightWall() {
         this.rightWall = false;
+    }
+
+    public void addRightWall() {
+        this.rightWall = true;
     }
     
     public void visit() {
         this.visited++;
     }
     
-    
+    public void addToRoute() {
+        this.inRoute = true;
+    }
     
     
 }
