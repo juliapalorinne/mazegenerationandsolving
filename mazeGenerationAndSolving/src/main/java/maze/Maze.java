@@ -82,7 +82,7 @@ public class Maze {
             for (int i = 0; i < width; i++) {
                 Cell c = cells[j][i];
                 
-                if (c.getRightWall() == true) {
+                if (c.getLeftWall() == true) {
                     System.out.print("#");
                 } else {
                     System.out.print("o");
