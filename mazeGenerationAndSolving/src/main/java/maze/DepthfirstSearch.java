@@ -63,9 +63,12 @@ public class DepthfirstSearch {
     
     
     public void search() {
-        System.out.println(x + ", " + y);
+//        System.out.println(x + ", " + y + " , visited: " + maze.getCell(x, y).numberOfVisits());
+        
+        if (maze.getCell(x, y).numberOfVisits() == 0) {
+            visited++;
+        }
         maze.getCell(x, y).visit();
-        visited++;
         
         if (visited < cells) {
             if (checkIfAllVisited() == true) {
