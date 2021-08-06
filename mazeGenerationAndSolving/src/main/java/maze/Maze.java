@@ -74,16 +74,16 @@ public class Maze {
      */
     public void printMaze() {
         
-        for(int i = 0; i < width; i++) {
+        for (int i = 0; i < width; i++) {
             if (cells[0][i].getUpperWall() == true) {
                 System.out.print("##");
             } else if (cells[0][i].checkIfInRoute() == false) {
                 System.out.print("# ");
             } else {
                 System.out.print("#o");
-            }
-            
+            }            
         }
+        
         System.out.print("#\r\n");
         
         for (int j = 0; j < height; j++) {

@@ -32,10 +32,16 @@ public class DepthfirstSearch {
     public void run() {
         generateRoutes();
         maze.getCell(0, 0).removeUpperWall();
-        maze.getCell(maze.getWidth()-1, maze.getHeight()-1).removeLowerWall();
+        maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
         maze.printMaze();
     }
 
+    
+    /** Generate a new maze with given dimensions.
+     *
+     * @param width number of cells
+     * @param height number of cells
+     */
     public void generateNewMaze(int width, int height) {
         this.cells = width * height;
         this.visited = 0;        
@@ -68,7 +74,7 @@ public class DepthfirstSearch {
     
     
     public void search() {
-//        System.out.println(x + ", " + y + " , visited: " + maze.getCell(x, y).numberOfVisits());
+        // System.out.println(x + ", " + y + " , visited: " + maze.getCell(x, y).numberOfVisits());
         
         if (maze.getCell(x, y).numberOfVisits() == 0) {
             visited++;

@@ -13,7 +13,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        DepthfirstSearch search = new DepthfirstSearch(20, 20);
+        DepthfirstSearch search = new DepthfirstSearch(40, 20);
         search.run();
 
         

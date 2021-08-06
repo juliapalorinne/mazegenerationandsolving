@@ -17,6 +17,11 @@ public class Cell {
     private boolean leftWall = true;
     
     
+    /** Create a new cell with given coordinates.
+     *
+     * @param x coordinate
+     * @param y coordinate
+     */
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
