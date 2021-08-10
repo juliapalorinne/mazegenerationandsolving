@@ -37,9 +37,8 @@ public class WallFollowerTest {
         search.maze.getCell(7, 0).removeUpperWall();
         
         assertTrue(wallFollower.findFirstCell() == true);
-        Cell cell = (Cell) wallFollower.queue.getFirst(); 
+        Cell cell = (Cell) wallFollower.queue.pop(); 
         assertTrue(cell.getY() == 0);
-        System.out.println(cell.getY());
         assertTrue(cell.getX() == 7);
     }
     
@@ -53,7 +52,6 @@ public class WallFollowerTest {
         assertTrue(wallFollower.findLastCell() == true);
         Cell cell = wallFollower.lastCell;
         assertTrue(cell.getY() == height - 1);
-        System.out.println(cell.getY());
         assertTrue(cell.getX() == 4);
     }
     

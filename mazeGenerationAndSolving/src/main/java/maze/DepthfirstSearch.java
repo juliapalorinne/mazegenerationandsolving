@@ -7,7 +7,7 @@ import java.util.Stack;
  *
  * @author julia
  */
-public class DepthfirstSearch {  
+public final class DepthfirstSearch {  
     
     public Maze maze;
     public Stack stack;
@@ -33,7 +33,7 @@ public class DepthfirstSearch {
         generateRoutes();
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
-        maze.printMaze();
+        // maze.printMaze();
     }
 
     

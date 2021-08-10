@@ -1,6 +1,8 @@
 package main;
 
 import maze.DepthfirstSearch;
+import maze.Maze;
+import maze.WallFollower;
 
 
 /**
@@ -13,11 +15,16 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        DepthfirstSearch search = new DepthfirstSearch(40, 20);
+        DepthfirstSearch search = new DepthfirstSearch(5, 5);
         search.run();
 
+        Maze maze = search.maze;
+        maze.printMaze();
         
+        WallFollower follower = new WallFollower(maze);
+        follower.run();
         
+        maze.printMaze();
     }
     
 }
