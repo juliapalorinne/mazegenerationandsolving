@@ -55,6 +55,82 @@ public class WallFollowerTest {
         assertTrue(cell.getX() == 4);
     }
     
-   
+    @Test
+    public void findDirectionFindsDirection() {
+        Cell[][] cells = new Cell[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cells[j][i] = new Cell(i, j);
+            }
+        }
+        
+        Maze maze = new Maze(cells);
+        maze.getCell(0, 0).removeUpperWall();
+        maze.removeWall(maze.getCell(0, 0), 2);
+        maze.removeWall(maze.getCell(0, 1), 2);
+        maze.removeWall(maze.getCell(0, 1), 3);
+        maze.removeWall(maze.getCell(0, 2), 3);
+        maze.removeWall(maze.getCell(1, 1), 0);
+        maze.removeWall(maze.getCell(1, 0), 3);
+        maze.removeWall(maze.getCell(2, 0), 2);
+        maze.removeWall(maze.getCell(2, 1), 2);
+        maze.getCell(2, 2).removeLowerWall();
+        
+        maze.printMaze();
+        
+        wallFollower = new WallFollower(maze);
+        
+        wallFollower.currentCell = maze.getCell(0, 0);
+        wallFollower.directions.addLast(2);
+        
+        // Step 1
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 2);
+        assertTrue(wallFollower.currentCell.getX() == 0);
+        assertTrue(wallFollower.currentCell.getY() == 1);
+        
+        // Step 2
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 2);
+        assertTrue(wallFollower.currentCell.getX() == 0);
+        assertTrue(wallFollower.currentCell.getY() == 2);
+        
+        // Step 3
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 3);
+        assertTrue(wallFollower.currentCell.getX() == 1);
+        assertTrue(wallFollower.currentCell.getY() == 2);
+        
+        // Step 4
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 1);
+        assertTrue(wallFollower.currentCell.getX() == 0);
+        assertTrue(wallFollower.currentCell.getY() == 2);
+        
+        // Step 5
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 0);
+        assertTrue(wallFollower.currentCell.getX() == 0);
+        assertTrue(wallFollower.currentCell.getY() == 1);
+        
+        // Step 6
+        
+        wallFollower.findDirection();
+        
+        assertTrue((int) wallFollower.directions.getLast() == 3);
+        assertTrue(wallFollower.currentCell.getX() == 1);
+        assertTrue(wallFollower.currentCell.getY() == 1);
     
+    }
+            
 }

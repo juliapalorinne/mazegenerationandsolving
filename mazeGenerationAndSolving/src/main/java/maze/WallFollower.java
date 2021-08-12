@@ -3,7 +3,7 @@ package maze;
 import java.util.ArrayDeque;
 import java.util.Stack;
 
-/** Class for solving a maze with wall-follower algorithm.
+/** Class for solving a maze with right wall-follower algorithm.
  *
  * @author julia
  */
@@ -28,7 +28,7 @@ public class WallFollower {
     }
     
     
-    /** Run the wall-follower.
+    /** Run the wall-follower algortihm.
      * Find a route and print it if possible.
      */
     public void run() {
@@ -45,17 +45,19 @@ public class WallFollower {
             return false;
         }
         
-        queue.push(currentCell);
+        currentCell.addToRoute();
         directions.addLast(2);
         
-        while (currentCell.getX() != lastCell.getX() && currentCell.getY() != lastCell.getY()) {
+        while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
             findDirection();
         }
         
         return true;
     }
 
-    
+    /** Find direction to which algorithm continues.
+     * Up for 0, left for 1, down for 2 and right for 3.
+     */
     public void findDirection() {
         int dir = (int) directions.getLast();
         boolean found = false;
@@ -65,38 +67,48 @@ public class WallFollower {
                 if (currentCell.getRightWall() == false) {
                     currentCell = maze.getCell(currentCell.getX() + 1, currentCell.getY());
                     found = true;
+                    directions.addLast(3);
                 } else {
                     dir++;
                 }
-            } else if (dir == 1) {
+            }
+            if (dir == 1) {
                 if (currentCell.getUpperWall() == false) {
                     currentCell = maze.getCell(currentCell.getX(), currentCell.getY() - 1);
                     found = true;
+                    directions.addLast(0);
                 } else {
                     dir++;
                 }
-            } else if (dir == 2) {
+            }
+            if (dir == 2) {
                 if (currentCell.getLeftWall() == false) {
                     currentCell = maze.getCell(currentCell.getX() - 1, currentCell.getY());
                     found = true;
+                    directions.addLast(1);
                 } else {
                     dir++;
                 }
-            } else if (dir == 3) {
+            }
+            if (dir == 3) {
                 if (currentCell.getLowerWall() == false) {
                     currentCell = maze.getCell(currentCell.getX(), currentCell.getY() + 1);
                     found = true;
+                    directions.addLast(2);
                 } else {
                     dir = 0;
                 }
             }
         }
-        
-        directions.addLast(dir);
         queue.push(currentCell);
+        currentCell.addToRoute();
     }
     
     
+    /** Find a cell from the first row with upper wall missing.
+     *
+     * @return true if first cell found, false if not
+     */
     public boolean findFirstCell() {
         for (int i = 0; i < maze.getWidth(); i++) {
             if (maze.getCell(i, 0).getUpperWall() == false) {
@@ -108,6 +120,12 @@ public class WallFollower {
         System.out.println("No first cell");
         return false;
     }
+    
+    
+    /** Find a cell from the last row with lower wall missing.
+     *
+     * @return true if last cell found, false if not
+     */
     
     public boolean findLastCell() {
         for (int i = 0; i < maze.getWidth(); i++) {

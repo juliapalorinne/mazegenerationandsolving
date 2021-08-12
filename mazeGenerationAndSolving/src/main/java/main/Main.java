@@ -15,16 +15,17 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        DepthfirstSearch search = new DepthfirstSearch(5, 5);
+        DepthfirstSearch search = new DepthfirstSearch(20, 10);
         search.run();
 
         Maze maze = search.maze;
         maze.printMaze();
+        System.out.println("");
         
         WallFollower follower = new WallFollower(maze);
         follower.run();
         
-        maze.printMaze();
+        // maze.printMaze();
     }
     
 }
