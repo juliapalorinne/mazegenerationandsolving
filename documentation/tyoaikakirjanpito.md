@@ -13,5 +13,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 3.8.2021 | Badget README-tiedostoon, jacocon korjaus ja testejä | 4 h
 5.8.2021 | Ensimmäinen labyrintinluomisalgoritmi valmis ja testattu, ensimmäinen ratkaisualgoritmi aloitettu ja myös sen testit aloitettu | 4,5 h
 10.8.2021 | Wall-follower ja testejä | 2 h
+12.8.2021 | Wall-follower loppuun ja Kruskalin algoritmin aloitus | 4,5 h
  | | 
-**Yhteensä** | | **37,5 h**
+**Yhteensä** | | **42 h**
