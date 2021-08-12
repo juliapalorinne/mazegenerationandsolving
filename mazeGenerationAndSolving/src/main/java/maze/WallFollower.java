@@ -12,6 +12,7 @@ public class WallFollower {
     Stack queue;
     ArrayDeque directions;
     Maze maze;
+    Cell firstCell;
     Cell lastCell;
     Cell currentCell;
     
@@ -50,6 +51,9 @@ public class WallFollower {
         
         while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
             findDirection();
+            if (currentCell.getX() == firstCell.getX() && currentCell.getY() == firstCell.getY()) {
+                return false;
+            }
         }
         
         return true;
@@ -113,6 +117,7 @@ public class WallFollower {
         for (int i = 0; i < maze.getWidth(); i++) {
             if (maze.getCell(i, 0).getUpperWall() == false) {
                 queue.push(maze.getCell(i, 0));
+                firstCell = maze.getCell(i, 0);
                 currentCell = maze.getCell(i, 0);
                 return true;
             }

@@ -12,51 +12,10 @@ import org.junit.Test;
 
 public class WallFollowerTest {
     WallFollower wallFollower;
-    DepthfirstSearch search;
-    int width;
-    int height;
-    
+    Maze maze;
     
     @Before
     public void setUp() {
-        this.width = 50;
-        this.height = 50;
-        
-        this.search = new DepthfirstSearch(width, height);
-        search.run();
-        
-        this.wallFollower = new WallFollower(search.maze);
-    }
-    
-    
-    @Test
-    public void findFirstCellFindsCell() {
-        search.maze.getCell(0, 0).addUpperWall();
-        assertTrue(wallFollower.findFirstCell() == false);
-        
-        search.maze.getCell(7, 0).removeUpperWall();
-        
-        assertTrue(wallFollower.findFirstCell() == true);
-        Cell cell = (Cell) wallFollower.queue.pop(); 
-        assertTrue(cell.getY() == 0);
-        assertTrue(cell.getX() == 7);
-    }
-    
-    @Test
-    public void findLastCellFindsCell() {
-        search.maze.getCell(width - 1, height - 1).addLowerWall();
-        assertTrue(wallFollower.findLastCell() == false);
-        
-        search.maze.getCell(4, height - 1).removeLowerWall();
-        
-        assertTrue(wallFollower.findLastCell() == true);
-        Cell cell = wallFollower.lastCell;
-        assertTrue(cell.getY() == height - 1);
-        assertTrue(cell.getX() == 4);
-    }
-    
-    @Test
-    public void findDirectionFindsDirection() {
         Cell[][] cells = new Cell[3][3];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -64,7 +23,7 @@ public class WallFollowerTest {
             }
         }
         
-        Maze maze = new Maze(cells);
+        maze = new Maze(cells);
         maze.getCell(0, 0).removeUpperWall();
         maze.removeWall(maze.getCell(0, 0), 2);
         maze.removeWall(maze.getCell(0, 1), 2);
@@ -76,12 +35,41 @@ public class WallFollowerTest {
         maze.removeWall(maze.getCell(2, 1), 2);
         maze.getCell(2, 2).removeLowerWall();
         
-        maze.printMaze();
-        
         wallFollower = new WallFollower(maze);
         
         wallFollower.currentCell = maze.getCell(0, 0);
         wallFollower.directions.addLast(2);
+    }
+    
+    
+    @Test
+    public void findFirstCellFindsCell() {
+        maze.getCell(0, 0).addUpperWall();
+        assertTrue(wallFollower.findFirstCell() == false);
+        
+        maze.getCell(2, 0).removeUpperWall();
+        
+        assertTrue(wallFollower.findFirstCell() == true);
+        Cell cell = (Cell) wallFollower.queue.pop(); 
+        assertTrue(cell.getY() == 0);
+        assertTrue(cell.getX() == 2);
+    }
+    
+    @Test
+    public void findLastCellFindsCell() {
+        maze.getCell(2, 2).addLowerWall();
+        assertTrue(wallFollower.findLastCell() == false);
+        
+        maze.getCell(1, 2).removeLowerWall();
+        
+        assertTrue(wallFollower.findLastCell() == true);
+        Cell cell = wallFollower.lastCell;
+        assertTrue(cell.getY() == 2);
+        assertTrue(cell.getX() == 1);
+    }
+    
+    @Test
+    public void findDirectionFindsDirection() {
         
         // Step 1
         
@@ -129,8 +117,30 @@ public class WallFollowerTest {
         
         assertTrue((int) wallFollower.directions.getLast() == 3);
         assertTrue(wallFollower.currentCell.getX() == 1);
-        assertTrue(wallFollower.currentCell.getY() == 1);
-    
+        assertTrue(wallFollower.currentCell.getY() == 1);    
     }
-            
+    
+    @Test
+    public void findRouteReturnsFalseIfFirstCellMissing() {
+        maze.getCell(0, 0).addUpperWall();
+        assertTrue(wallFollower.findRoute() == false);
+    }
+    
+    @Test
+    public void findRouteReturnsFalseIfLastCellMissing() {
+        maze.getCell(2, 2).addLowerWall();
+        assertTrue(wallFollower.findRoute() == false);
+    }
+    
+    @Test
+    public void findRouteReturnsTrueIfNoRouteIsFound() {
+        maze.getCell(1, 1).addUpperWall();
+        maze.getCell(1, 0).addLowerWall();
+        assertTrue(wallFollower.findRoute() == false);
+    }
+    
+    @Test
+    public void findRouteReturnsTrueIfRouteIsFound() {
+        assertTrue(wallFollower.findRoute() == true);
+    }
 }
