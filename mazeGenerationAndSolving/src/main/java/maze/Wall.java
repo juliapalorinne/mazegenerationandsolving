@@ -4,7 +4,7 @@ package maze;
  *
  * @author julia
  */
-public class Wall {
+public class Wall implements Comparable<Wall> {
     
     private boolean inRoute = false;
     private boolean open = false;
@@ -59,6 +59,11 @@ public class Wall {
     
     public void closeTheWall() {
         this.open = false;
+    }
+    
+    @Override
+    public int compareTo(Wall wall) {
+        return Integer.compare(this.weight, wall.weight);
     }
     
 }

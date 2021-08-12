@@ -4,12 +4,13 @@ package maze;
  *
  * @author julia
  */
-public class Cell {
+public class Cell implements Comparable<Cell>  {
     
     private final int x;
     private final int y;
     private int visited;
     private int number;
+    
     private boolean inRoute = false;
     
     private boolean upperWall = true;
@@ -114,5 +115,8 @@ public class Cell {
         this.inRoute = true;
     }
     
-    
+    @Override
+    public int compareTo(Cell cell) {
+        return Integer.compare(this.number, cell.number);
+    }
 }

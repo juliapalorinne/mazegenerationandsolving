@@ -29,12 +29,12 @@ public class Main {
         // maze.printMaze();
         System.out.println("");
         
-        KruskalsAlgorithm kruskal = new KruskalsAlgorithm(20, 10);
-        kruskal.run();
-
-        Maze maze = kruskal.maze;
-        maze.printMaze();
-        System.out.println("");
+//        KruskalsAlgorithm kruskal = new KruskalsAlgorithm(20, 10);
+//        kruskal.run();
+//
+//        Maze maze = kruskal.maze;
+//        maze.printMaze();
+//        System.out.println("");
     }
     
 }

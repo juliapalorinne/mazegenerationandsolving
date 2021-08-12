@@ -1,3 +1,3 @@
 # Viikkoraportti 4
 
-Tällä viikolla olen työskennellyt labyrinttien ratkaisualgoritmien parissa.
+Tällä viikolla tein ensimmäisen labyrintin ratkaisualgoritmin, wall-follower algoritmin, testeineen valmiiksi. Lisäksi aloitin ohjelmoimaan satunnaistettua Kruskalin algoritmia labyrintin muodostamiseen. Tällä viikolla tuntui ensimmäistä kertaa siltä, että aiemminopitut asiat alkavat olla jollakin tavalla mielessä ja ohjelmointi sujuu kohtalaisesti. Aloitin myös toteutus- ja testausdokumenttien kirjoittamisen.

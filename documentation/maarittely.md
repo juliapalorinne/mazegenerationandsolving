@@ -2,12 +2,13 @@
 
 Tekijä: Julia Palorinne (TKT)
 
-Käytetty kieli: Java
+Käytetty ohjelmointikieli: Java
+Koodin kieli: englanti
+Dokumentaation kieli: suomi
 
 <br>
 
-Työni tarkoitus on tarkastella ja vertailla algoritmeja, joilla luodaan ja 
-ratkaistaan labyrintteja.
+Työni tarkoitus on tarkastella ja vertailla algoritmeja, joilla luodaan ja ratkaistaan labyrintteja.
 
 <br>
 

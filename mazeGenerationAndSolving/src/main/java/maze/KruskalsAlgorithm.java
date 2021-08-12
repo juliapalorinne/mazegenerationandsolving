@@ -17,7 +17,7 @@ public final class KruskalsAlgorithm {
     public int cells;
     
     Cell[] order;
-    Cell[] parent;
+    Cell[] parents;
 
     
     /** Create a new maze with given dimensions.
@@ -26,12 +26,13 @@ public final class KruskalsAlgorithm {
      * @param height of the maze
      */
     public KruskalsAlgorithm(int width, int height) {
-        generateNewMaze(width, height);
-        
+        this.cells = width * height;
         this.walls = new ArrayList<>();
         this.queue = new PriorityQueue<>();
-        this.parent = new Cell[cells+1];
+        this.parents = new Cell[cells+1];
         this.order = new Cell[cells+1];
+        
+        generateNewMaze(width, height);
     }
     
     
@@ -39,7 +40,18 @@ public final class KruskalsAlgorithm {
      * Then print the maze.
      */
     public void run() {
+        ArrayList<Wall> tree = find();
         
+        for (Wall wall : tree) {
+            wall.openTheWall();
+            if (wall.getCell1().getX() == wall.getCell1().getX()) {
+                maze.removeWall(wall.getCell1(), 2);
+            }
+            if (wall.getCell1().getY() == wall.getCell1().getY()) {
+                maze.removeWall(wall.getCell1(), 3);
+            }
+            
+        }
         
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
@@ -53,7 +65,6 @@ public final class KruskalsAlgorithm {
      * @param height number of cells
      */
     public void generateNewMaze(int width, int height) {
-        this.cells = width * height;  
         int number = 0;
         
         Cell[][] cellArray = new Cell[height][width];
@@ -63,33 +74,56 @@ public final class KruskalsAlgorithm {
                 Cell cell = new Cell(i, j);
                 cell.addNumber(number);
                 cellArray[j][i] = cell;
+                parents[number] = cell;
                 number++;
             }
         }
         this.maze = new Maze(cellArray);
+        createWalls(width, height);
+    }
+    
+    
+    /** Create walls between cells.
+     *
+     * @param width of the maze
+     * @param height of the maze
+     */
+    public void createWalls(int width, int height) {
+        for (int i = 0; i < width - 1; i++) {
+            for (int j = 0; j < height - 1; j++) {
+                makeSet(maze.getCell(i, j), maze.getCell(i + 1, j));
+                makeSet(maze.getCell(i, j), maze.getCell(i, j + 1));
+            }    
+        }
     }
     
     
     public int getRandomWeight() {
-        Random r = new Random();
+        Random r = new Random(1337);
         int number = r.nextInt(cells * 100);
         return number;
     }
     
-    
-    public void combine(Cell cell1, Cell cell2, int weight) {
+    /** Create a set of two cells with random weight.
+     *
+     * @param cell1 first cell
+     * @param cell2 second cell
+     */
+    public void makeSet(Cell cell1, Cell cell2) {
+        int weight = getRandomWeight();
         Wall wall = new Wall(cell1, cell2, weight);
         walls.add(wall);
         queue.add(wall);
     }
     
-    public ArrayList<Wall> count() {
+    
+    public ArrayList<Wall> find() {
         ArrayList<Wall> tree = new ArrayList<>();
         
         while (!queue.isEmpty()) {
-            Wall w = queue.poll();
-            Cell cell1 = w.getCell1();
-            Cell cell2 = w.getCell2();
+            Wall wall = queue.poll();
+            Cell cell1 = wall.getCell1();
+            Cell cell2 = wall.getCell2();
             
             Cell parent1 = findRoot(cell1);
             Cell parent2 = findRoot(cell2);
@@ -98,6 +132,15 @@ public final class KruskalsAlgorithm {
                 continue;
             }
             
+            if (order[parent1.getNumber()].getNumber() > order[parent2.getNumber()].getNumber()) {
+                parents[parent2.getNumber()] = parent1;
+            } else if (order[parent1.getNumber()].getNumber() < order[parent2.getNumber()].getNumber()) {
+                parents[parent1.getNumber()] = parent2;
+            } else {
+                parents[parent2.getNumber()] = parent1;
+            }
+            
+            tree.add(wall);
         }
         
         return tree;        
@@ -105,8 +148,12 @@ public final class KruskalsAlgorithm {
     
     
     public Cell findRoot(Cell cell) {
-        Cell p = new Cell(0, 0);
-        return p;
+        Cell parent = parents[cell.getNumber()];
+        
+        if (parent.getNumber() == cell.getNumber()) {
+            return parent;
+        }
+        return findRoot(parent);
     }
 
 }
