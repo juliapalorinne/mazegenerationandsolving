@@ -1,12 +1,12 @@
 # Määrittelydokumentti
 
-Tekijä: Julia Palorinne (TKT)
+**Tekijä:** Julia Palorinne (TKT)
 
-Käytetty ohjelmointikieli: Java
+**Käytetty ohjelmointikieli:** Java
 
-Koodin kieli: englanti
+**Koodin kieli:** englanti
 
-Dokumentaation kieli: suomi
+**Dokumentaation kieli:** suomi
 
 <br>
 
