@@ -3,7 +3,9 @@
 Tekijä: Julia Palorinne (TKT)
 
 Käytetty ohjelmointikieli: Java
+
 Koodin kieli: englanti
+
 Dokumentaation kieli: suomi
 
 <br>
