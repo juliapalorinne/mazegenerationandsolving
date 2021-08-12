@@ -1,5 +1,7 @@
 package maze;
 
+import java.util.ArrayList;
+
 /** Class creates an empty maze with given dimensions.
  *
  * @author julia
@@ -21,8 +23,9 @@ public class Maze {
         this.height = cells.length;
         this.width = cells[0].length;
     }
+
     
-    /** Removes a wall from the given cell and its neighbour(s).
+    /** Removes a wall from the given cell and its neighbour.
      *
      * @param cell the cell where the wall is removed
      * @param dir number between 0 and 3 for direction
@@ -51,6 +54,7 @@ public class Maze {
         cells[y][x] = cell;
     }
     
+    
     /** Returns the cell with given coordinates.
      *
      * @param x coordinate
@@ -61,6 +65,7 @@ public class Maze {
         return cells[y][x];
     }
     
+    
     public int getWidth() {
         return this.width;
     }
@@ -68,6 +73,7 @@ public class Maze {
     public int getHeight() {
         return this.height;
     }
+    
     
     /** Prints the maze.
      * Character # for wall and o for empty space.

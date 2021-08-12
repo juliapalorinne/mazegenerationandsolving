@@ -24,10 +24,15 @@ public final class DepthfirstSearch {
      */
     public DepthfirstSearch(int width, int height) {
         generateNewMaze(width, height);
+        
+        this.visited = 0;        
+        this.x = 0;
+        this.y = 0;
+        this.stack = new Stack();
     }
     
     /** Run the depth-first search algorithm.
-     * Then print the maze.
+     * Then choose first and last cells.
      */
     public void run() {
         generateRoutes();
@@ -44,7 +49,6 @@ public final class DepthfirstSearch {
      */
     public void generateNewMaze(int width, int height) {
         this.cells = width * height;
-        this.visited = 0;        
         
         Cell[][] cellArray = new Cell[height][width];
         
@@ -55,9 +59,6 @@ public final class DepthfirstSearch {
             }
         }
         this.maze = new Maze(cellArray);
-        this.x = 0;
-        this.y = 0;
-        this.stack = new Stack();
     }
     
     

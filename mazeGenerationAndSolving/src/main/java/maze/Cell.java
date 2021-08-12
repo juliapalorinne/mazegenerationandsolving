@@ -9,6 +9,7 @@ public class Cell {
     private final int x;
     private final int y;
     private int visited;
+    private int number;
     private boolean inRoute = false;
     
     private boolean upperWall = true;
@@ -39,6 +40,14 @@ public class Cell {
     
     public int getY() {
         return this.y;
+    }
+    
+    public int getNumber() {
+        return this.number;
+    }
+    
+    public void addNumber(int number) {
+        this.number = number;
     }
     
     public int numberOfVisits() {
