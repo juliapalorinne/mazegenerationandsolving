@@ -1,12 +1,8 @@
 package maze;
 
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -38,6 +34,7 @@ public class WallFollowerTest {
         wallFollower = new WallFollower(maze);
         
         wallFollower.currentCell = maze.getCell(0, 0);
+        wallFollower.firstCell = maze.getCell(0, 0);
         wallFollower.directions.addLast(2);
     }
     
@@ -53,6 +50,7 @@ public class WallFollowerTest {
         Cell cell = (Cell) wallFollower.queue.pop(); 
         assertTrue(cell.getY() == 0);
         assertTrue(cell.getX() == 2);
+        // System.out.println("1");
     }
     
     @Test
@@ -66,6 +64,7 @@ public class WallFollowerTest {
         Cell cell = wallFollower.lastCell;
         assertTrue(cell.getY() == 2);
         assertTrue(cell.getX() == 1);
+        // System.out.println("2");
     }
     
     @Test
@@ -118,29 +117,35 @@ public class WallFollowerTest {
         assertTrue((int) wallFollower.directions.getLast() == 3);
         assertTrue(wallFollower.currentCell.getX() == 1);
         assertTrue(wallFollower.currentCell.getY() == 1);    
+        
+        // System.out.println("3");
     }
     
     @Test
     public void findRouteReturnsFalseIfFirstCellMissing() {
         maze.getCell(0, 0).addUpperWall();
         assertTrue(wallFollower.findRoute() == false);
+        // System.out.println("4");
     }
     
     @Test
     public void findRouteReturnsFalseIfLastCellMissing() {
         maze.getCell(2, 2).addLowerWall();
         assertTrue(wallFollower.findRoute() == false);
+        // System.out.println("5");
     }
     
     @Test
-    public void findRouteReturnsTrueIfNoRouteIsFound() {
+    public void findRouteReturnsFalseIfNoRouteIsFound() {
         maze.getCell(1, 1).addUpperWall();
         maze.getCell(1, 0).addLowerWall();
         assertTrue(wallFollower.findRoute() == false);
+        // System.out.println("6");
     }
     
     @Test
     public void findRouteReturnsTrueIfRouteIsFound() {
         assertTrue(wallFollower.findRoute() == true);
+        // System.out.println("7");
     }
 }

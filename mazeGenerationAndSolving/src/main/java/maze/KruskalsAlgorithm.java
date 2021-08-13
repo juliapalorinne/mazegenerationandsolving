@@ -15,8 +15,7 @@ public final class KruskalsAlgorithm {
     public ArrayList<Wall> walls;
     public PriorityQueue<Wall> queue;
     public int cells;
-    
-    Cell[] order;
+    public int parts;
     Cell[] parents;
 
     
@@ -27,27 +26,40 @@ public final class KruskalsAlgorithm {
      */
     public KruskalsAlgorithm(int width, int height) {
         this.cells = width * height;
+        this.parts = width * height;
         this.walls = new ArrayList<>();
         this.queue = new PriorityQueue<>();
-        this.parents = new Cell[cells+1];
-        this.order = new Cell[cells+1];
+        this.parents = new Cell[cells];
         
         generateNewMaze(width, height);
     }
     
     
-    /** Run the Kruskal's algorithm.
+    /** Run the Kruskal's algorithm to find a simple maze.
      * Then print the maze.
      */
-    public void run() {
-        ArrayList<Wall> tree = find();
-        
+    public void runSimpleMaze() {
+        ArrayList<Wall> tree = findSimpleMaze();
+        removeWallsFromMaze(tree);
+    }
+
+    
+    /** Run the Kruskal's algorithm to find a simple maze.
+     * Then print the maze.
+     */
+    public void runLoopedMaze() {
+        ArrayList<Wall> tree = findLoopedMaze();
+        removeWallsFromMaze(tree);
+    }
+
+    
+    public void removeWallsFromMaze(ArrayList<Wall> tree) {
         for (Wall wall : tree) {
             wall.openTheWall();
-            if (wall.getCell1().getX() == wall.getCell1().getX()) {
+            if (wall.getCell1().getX() == wall.getCell2().getX()) {
                 maze.removeWall(wall.getCell1(), 2);
             }
-            if (wall.getCell1().getY() == wall.getCell1().getY()) {
+            if (wall.getCell1().getY() == wall.getCell2().getY()) {
                 maze.removeWall(wall.getCell1(), 3);
             }
             
@@ -55,9 +67,8 @@ public final class KruskalsAlgorithm {
         
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
-        // maze.printMaze();
     }
-
+    
     
     /** Generate a new maze with given dimensions.
      *
@@ -122,7 +133,7 @@ public final class KruskalsAlgorithm {
     }
     
     
-    public ArrayList<Wall> find() {
+    public ArrayList<Wall> findSimpleMaze() {
         ArrayList<Wall> tree = new ArrayList<>();
         
         while (!queue.isEmpty()) {
@@ -133,18 +144,42 @@ public final class KruskalsAlgorithm {
             Cell parent1 = findRoot(cell1);
             Cell parent2 = findRoot(cell2);
             
-            if (parent1.getNumber() == parent2.getNumber()) {
-                continue;
-            }
-            
-            if (order[parent1.getNumber()].getNumber() > order[parent2.getNumber()].getNumber()) {
+            if (parent1.getNumber() > parent2.getNumber()) {
                 parents[parent2.getNumber()] = parent1;
-            } else if (order[parent1.getNumber()].getNumber() < order[parent2.getNumber()].getNumber()) {
+                tree.add(wall);
+            } else if (parent1.getNumber() < parent2.getNumber()) {
                 parents[parent1.getNumber()] = parent2;
+                tree.add(wall);
             } else {
                 parents[parent2.getNumber()] = parent1;
             }
+        }
+        
+        return tree;        
+    }
+    
+    
+    public ArrayList<Wall> findLoopedMaze() {
+        ArrayList<Wall> tree = new ArrayList<>();
+        
+        while (!queue.isEmpty() && parts > 1) {
+            Wall wall = queue.poll();
+            Cell cell1 = wall.getCell1();
+            Cell cell2 = wall.getCell2();
             
+            Cell parent1 = findRoot(cell1);
+            Cell parent2 = findRoot(cell2);
+            
+            
+            if (parent1.getNumber() > parent2.getNumber()) {
+                parents[parent2.getNumber()] = parent1;
+                parts--;
+            } else if (parent1.getNumber() < parent2.getNumber()) {
+                parents[parent1.getNumber()] = parent2;
+                parts--;
+            } else {
+                parents[parent2.getNumber()] = parent1;
+            }
             tree.add(wall);
         }
         

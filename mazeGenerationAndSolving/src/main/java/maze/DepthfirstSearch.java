@@ -33,13 +33,18 @@ public final class DepthfirstSearch {
     }
     
     /** Run the depth-first search algorithm.
-     * Then choose first and last cells.
+     * Then choose first and last cells and reset visits.
      */
     public void run() {
         generateRoutes();
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
-        // maze.printMaze();
+        
+        for (int i = 0; i < maze.getWidth(); i++) {
+            for (int j = 0; j < maze.getHeight(); j++) {
+                maze.getCell(i, j).resetVisits();
+            }
+        }
     }
 
     

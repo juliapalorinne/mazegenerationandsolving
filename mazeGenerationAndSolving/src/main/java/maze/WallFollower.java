@@ -30,13 +30,11 @@ public class WallFollower {
     
     
     /** Run the wall-follower algortihm.
-     * Find a route and print it if possible.
+     * Find a route or print error message.
      */
     public void run() {
         if (findRoute() == false) {
             System.out.println("No routes or the maze has loops.");            
-        } else {
-            maze.printMaze();
         }
     }
     
@@ -51,7 +49,7 @@ public class WallFollower {
         
         while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
             findDirection();
-            if (currentCell.getX() == firstCell.getX() && currentCell.getY() == firstCell.getY()) {
+            if (currentCell.numberOfVisits() > 4) {
                 return false;
             }
         }
@@ -78,9 +76,13 @@ public class WallFollower {
             }
             if (dir == 1) {
                 if (currentCell.getUpperWall() == false) {
-                    currentCell = maze.getCell(currentCell.getX(), currentCell.getY() - 1);
-                    found = true;
-                    directions.addLast(0);
+                    if (currentCell.getX() == firstCell.getX() && currentCell.getY() == firstCell.getY()) {
+                        dir++;
+                    } else {
+                        currentCell = maze.getCell(currentCell.getX(), currentCell.getY() - 1);
+                        found = true;
+                        directions.addLast(0);
+                    }
                 } else {
                     dir++;
                 }
@@ -104,6 +106,7 @@ public class WallFollower {
                 }
             }
         }
+        currentCell.visit();
         queue.push(currentCell);
         currentCell.addToRoute();
     }

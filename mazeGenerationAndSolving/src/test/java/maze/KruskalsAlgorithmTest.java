@@ -1,12 +1,8 @@
 package maze;
 
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -53,4 +49,23 @@ public class KruskalsAlgorithmTest {
         assertTrue(wall.getCell2().getY() == 2);
     }
     
+    @Test
+    public void findRootWorksWhenCellIsItsOwnParent() {
+        Cell cell = search.maze.getCell(12, 4);
+        Cell parent = search.findRoot(cell);
+        assertTrue(parent.getX() == 12);
+        assertTrue(parent.getY() == 4);
+    }
+    
+    @Test
+    public void orderingWorks() {
+        Wall wall = search.queue.poll();
+        int weight = wall.getWeight();
+        
+        for (int i = 0; i < 1000; i++) {
+            wall = search.queue.poll();
+            assertTrue(weight <= wall.getWeight());
+            weight = wall.getWeight();
+        }
+    }
 }

@@ -157,7 +157,7 @@ public class DepthfirstSearchTest {
     
     @Test
     public void searchVisitsAllCells() {
-        search.run();
+        search.generateRoutes();
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 assertFalse(search.maze.getCell(i, j).numberOfVisits() == 0);

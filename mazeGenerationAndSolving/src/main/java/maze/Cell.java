@@ -111,6 +111,10 @@ public class Cell implements Comparable<Cell>  {
         this.visited++;
     }
     
+    public void resetVisits() {
+        this.visited = 0;
+    }
+        
     public void addToRoute() {
         this.inRoute = true;
     }
