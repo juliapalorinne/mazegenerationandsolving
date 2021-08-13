@@ -3,6 +3,7 @@ package maze;
 import java.util.Random;
 import java.util.Stack;
 
+
 /** Randomized depth-first search for creating a maze.
  *
  * @author julia

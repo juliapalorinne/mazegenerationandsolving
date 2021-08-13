@@ -89,20 +89,25 @@ public final class KruskalsAlgorithm {
      * @param height of the maze
      */
     public void createWalls(int width, int height) {
-        for (int i = 0; i < width - 1; i++) {
-            for (int j = 0; j < height - 1; j++) {
-                makeSet(maze.getCell(i, j), maze.getCell(i + 1, j));
-                makeSet(maze.getCell(i, j), maze.getCell(i, j + 1));
-            }    
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (j != width - 1) {
+                    makeSet(maze.getCell(j, i), maze.getCell(j + 1, i));
+                }
+                if (i != height - 1) {
+                    makeSet(maze.getCell(j, i), maze.getCell(j, i + 1));
+                }
+            }
         }
     }
     
     
     public int getRandomWeight() {
-        Random r = new Random(1337);
+        Random r = new Random();
         int number = r.nextInt(cells * 100);
         return number;
     }
+    
     
     /** Create a set of two cells with random weight.
      *

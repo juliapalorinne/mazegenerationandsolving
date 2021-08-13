@@ -1,12 +1,8 @@
 package maze;
 
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -31,6 +27,7 @@ public class DepthfirstSearchTest {
             int random = search.getRandomNumber();
             assertTrue(random < 4 && random >= 0);
         }
+        // System.out.println("1");
     }
     
     
@@ -44,6 +41,7 @@ public class DepthfirstSearchTest {
         search.maze.getCell(0, 3).visit();
         assertTrue(search.moveUp() == false);
         assertTrue(search.y == 4);
+        // System.out.println("2");
     }
     
     @Test
@@ -56,6 +54,7 @@ public class DepthfirstSearchTest {
         search.maze.getCell(0, 3).visit();
         assertTrue(search.moveUp() == false);
         assertTrue(search.x == 4);
+        // System.out.println("3");
     }
     
     @Test
@@ -68,6 +67,7 @@ public class DepthfirstSearchTest {
         search.y = 49;
         assertTrue(search.moveDown() == false);
         assertTrue(search.y == 49);
+        // System.out.println("4");
     }
     
     @Test
@@ -80,6 +80,7 @@ public class DepthfirstSearchTest {
         search.x = 49;
         assertTrue(search.moveRight() == false); 
         assertTrue(search.x == 49);
+        // System.out.println("5");
     }
     
     @Test
@@ -97,6 +98,7 @@ public class DepthfirstSearchTest {
             assertTrue(search.x >= 0 && search.x < 50);
             assertTrue(search.y >= 0 && search.y < 50);
         }
+        // System.out.println("6");
     }
     
     
@@ -110,6 +112,7 @@ public class DepthfirstSearchTest {
             assertTrue(visited == 0);
             c.visit();
         }
+        // System.out.println("7");
     }
     
     @Test
@@ -149,6 +152,7 @@ public class DepthfirstSearchTest {
         
         search.maze.getCell(48, 49).visit();
         assertTrue(search.checkIfAllVisited() == true);
+        // System.out.println("8");
     }
     
     @Test
@@ -159,6 +163,7 @@ public class DepthfirstSearchTest {
                 assertFalse(search.maze.getCell(i, j).numberOfVisits() == 0);
             }
         }
+        // System.out.println("9");
     }
     
 }
