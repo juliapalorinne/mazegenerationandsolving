@@ -1,8 +1,11 @@
-package maze;
+package mazeGeneration;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Random;
+import maze.Cell;
+import maze.Maze;
+import maze.Wall;
 
 
 /** Randomized Kruskal's algorithm for creating a maze.
@@ -36,7 +39,7 @@ public final class KruskalsAlgorithm {
     
     
     /** Run the Kruskal's algorithm to find a simple maze.
-     * Then print the maze.
+     * Then remove chosen walls.
      */
     public void runSimpleMaze() {
         ArrayList<Wall> tree = findSimpleMaze();
@@ -45,16 +48,20 @@ public final class KruskalsAlgorithm {
 
     
     /** Run the Kruskal's algorithm to find a simple maze.
-     * Then print the maze.
+     * Then remove chosen walls.
      */
     public void runLoopedMaze() {
-        ArrayList<Wall> tree = findLoopedMaze();
-        removeWallsFromMaze(tree);
+        ArrayList<Wall> list = findLoopedMaze();
+        removeWallsFromMaze(list);
     }
-
     
-    public void removeWallsFromMaze(ArrayList<Wall> tree) {
-        for (Wall wall : tree) {
+    
+    /** Remove the chosen walls from the maze.
+     *
+     * @param list of walls to be removed
+     */
+    public void removeWallsFromMaze(ArrayList<Wall> list) {
+        for (Wall wall : list) {
             wall.openTheWall();
             if (wall.getCell1().getX() == wall.getCell2().getX()) {
                 maze.removeWall(wall.getCell1(), 2);
@@ -62,7 +69,6 @@ public final class KruskalsAlgorithm {
             if (wall.getCell1().getY() == wall.getCell2().getY()) {
                 maze.removeWall(wall.getCell1(), 3);
             }
-            
         }
         
         maze.getCell(0, 0).removeUpperWall();
@@ -113,6 +119,10 @@ public final class KruskalsAlgorithm {
     }
     
     
+    /** Get a random weight for each of the walls.
+     *
+     * @return the weight
+     */
     public int getRandomWeight() {
         Random r = new Random();
         int number = r.nextInt(cells * 100);
@@ -133,8 +143,12 @@ public final class KruskalsAlgorithm {
     }
     
     
+    /** Generate a maze without loops.
+     *
+     * @return the list of cells
+     */
     public ArrayList<Wall> findSimpleMaze() {
-        ArrayList<Wall> tree = new ArrayList<>();
+        ArrayList<Wall> list = new ArrayList<>();
         
         while (!queue.isEmpty()) {
             Wall wall = queue.poll();
@@ -146,21 +160,25 @@ public final class KruskalsAlgorithm {
             
             if (parent1.getNumber() > parent2.getNumber()) {
                 parents[parent2.getNumber()] = parent1;
-                tree.add(wall);
+                list.add(wall);
             } else if (parent1.getNumber() < parent2.getNumber()) {
                 parents[parent1.getNumber()] = parent2;
-                tree.add(wall);
+                list.add(wall);
             } else {
                 parents[parent2.getNumber()] = parent1;
             }
         }
         
-        return tree;        
+        return list;        
     }
     
     
+    /** Generate a maze with loops.
+     *
+     * @return the list of cells
+     */
     public ArrayList<Wall> findLoopedMaze() {
-        ArrayList<Wall> tree = new ArrayList<>();
+        ArrayList<Wall> list = new ArrayList<>();
         
         while (!queue.isEmpty() && parts > 1) {
             Wall wall = queue.poll();
@@ -180,13 +198,18 @@ public final class KruskalsAlgorithm {
             } else {
                 parents[parent2.getNumber()] = parent1;
             }
-            tree.add(wall);
+            list.add(wall);
         }
         
-        return tree;        
+        return list;        
     }
     
     
+    /** Find a root for given cell.
+     *
+     * @param cell the cell 
+     * @return the parent cell
+     */
     public Cell findRoot(Cell cell) {
         Cell parent = parents[cell.getNumber()];
         

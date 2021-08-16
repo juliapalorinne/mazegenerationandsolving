@@ -1,5 +1,9 @@
-package maze;
+package mazeGeneration;
 
+import mazeGeneration.KruskalsAlgorithm;
+import java.util.ArrayList;
+import maze.Cell;
+import maze.Wall;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -67,5 +71,18 @@ public class KruskalsAlgorithmTest {
             assertTrue(weight <= wall.getWeight());
             weight = wall.getWeight();
         }
+    }
+    
+    
+    @Test
+    public void generateSimpleMazeGeneratesMazeWithoutLoops() {
+        ArrayList<Wall> list = search.findSimpleMaze();
+        
+        
+    }
+    
+    @Test
+    public void generateLoopedMazeGeneratesMazeWithLoops() {
+        ArrayList<Wall> list = search.findLoopedMaze();
     }
 }

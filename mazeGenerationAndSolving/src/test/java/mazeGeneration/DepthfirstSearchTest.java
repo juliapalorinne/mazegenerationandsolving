@@ -1,5 +1,8 @@
-package maze;
+package mazeGeneration;
 
+import maze.Cell;
+import maze.Maze;
+import mazeGeneration.DepthfirstSearch;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -105,6 +108,17 @@ public class DepthfirstSearchTest {
     @Test
     public void chooseDirectionChoosesFreeCell() {
         for (int i = 0; i < 5; i++) {
+            search.chooseDirection();
+            Maze maze = search.maze;
+            Cell c = maze.getCell(search.x, search.y);
+            int visited = c.numberOfVisits();
+            assertTrue(visited == 0);
+            c.visit();
+        }
+        
+        search.x = 40;
+        search.y = 40;
+        for (int i = 0; i < 7; i++) {
             search.chooseDirection();
             Maze maze = search.maze;
             Cell c = maze.getCell(search.x, search.y);

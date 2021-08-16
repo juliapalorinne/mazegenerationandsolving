@@ -1,17 +1,19 @@
 package main;
 
-import maze.DepthfirstSearch;
-import maze.KruskalsAlgorithm;
+import mazeGeneration.DepthfirstSearch;
+import mazeGeneration.KruskalsAlgorithm;
 import maze.Maze;
-import maze.WallFollower;
+import mazeSolving.WallFollower;
 
 
-/** Main calss.
+/** Main class.
  * Run maze generation and maze solving algorithms
  */
 public class Main {
 
-    /**
+    
+    /** Run the algorithms with given arguments and print the results.
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {

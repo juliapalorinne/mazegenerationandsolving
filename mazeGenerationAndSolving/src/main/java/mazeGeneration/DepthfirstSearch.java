@@ -1,7 +1,9 @@
-package maze;
+package mazeGeneration;
 
 import java.util.Random;
 import java.util.Stack;
+import maze.Cell;
+import maze.Maze;
 
 
 /** Randomized depth-first search for creating a maze.
@@ -31,6 +33,7 @@ public final class DepthfirstSearch {
         this.y = 0;
         this.stack = new Stack();
     }
+    
     
     /** Run the depth-first search algorithm.
      * Then choose first and last cells and reset visits.
@@ -68,6 +71,9 @@ public final class DepthfirstSearch {
     }
     
     
+    /** Generate routes.
+     * Continue until all cells visited.
+     */
     public void generateRoutes() {
         maze.getCell(x, y).visit();
         visited++;
@@ -80,9 +86,10 @@ public final class DepthfirstSearch {
     }
     
     
+    /** Search for unvisited cell neighbouring current cell.
+     * Move to cell and repeat search.
+     */
     public void search() {
-        // System.out.println(x + ", " + y + " , visited: " + maze.getCell(x, y).numberOfVisits());
-        
         if (maze.getCell(x, y).numberOfVisits() == 0) {
             visited++;
         }
@@ -101,7 +108,9 @@ public final class DepthfirstSearch {
     }
     
     
-    
+    /** Choose direction to which to move.
+     * For direction, get a random number between 0 and 3.
+     */
     public void chooseDirection() {
         int number = -1;
         boolean chosen = false;
@@ -121,6 +130,11 @@ public final class DepthfirstSearch {
         }
     }
     
+    
+    /** Check the cell upwards and move if possible.
+     *
+     * @return true if moved, false if not
+     */
     public boolean moveUp() {
         if (y > 0) {
             if (!checkIfVisited(0)) {
@@ -133,6 +147,11 @@ public final class DepthfirstSearch {
         return false;
     }
     
+    
+    /** Check the cell to left and move if possible.
+     *
+     * @return true if moved, false if not
+     */
     public boolean moveLeft() {
         if (x > 0) {
             if (!checkIfVisited(1)) {
@@ -145,6 +164,11 @@ public final class DepthfirstSearch {
         return false;
     }
     
+    
+    /** Check the cell downwards and move if possible.
+     *
+     * @return true if moved, false if not
+     */
     public boolean moveDown() {
         if (y < maze.getHeight() - 1) {
             if (!checkIfVisited(2)) {
@@ -157,6 +181,11 @@ public final class DepthfirstSearch {
         return false;
     }
     
+    
+    /** Check the cell to right and move if possible.
+     *
+     * @return true if moved, false if not
+     */
     public boolean moveRight() {
         if (x < maze.getWidth() - 1) {
             if (!checkIfVisited(3)) {
@@ -169,21 +198,32 @@ public final class DepthfirstSearch {
         return false;
     }
     
+    
+    /** Get a random number between 0 and 3.
+     *
+     * @return the number
+     */
     public int getRandomNumber() {
         Random r = new Random();
         int number = r.nextInt(4);
         return number;
     }
     
-    public boolean checkIfVisited(int i) {
+    
+    /** Check if the cell to wanted direction has been visited.
+     *
+     * @param direction number between 0 and 3
+     * @return false if not, else true
+     */
+    public boolean checkIfVisited(int direction) {
         int visits = -1;
-        if (i == 0) {
+        if (direction == 0) {
             visits = maze.getCell(x, y - 1).numberOfVisits();
-        } else if (i == 1) {
+        } else if (direction == 1) {
             visits = maze.getCell(x - 1, y).numberOfVisits();
-        } else if (i == 2) {
+        } else if (direction == 2) {
             visits = maze.getCell(x, y + 1).numberOfVisits();
-        } else if (i == 3) {
+        } else if (direction == 3) {
             visits = maze.getCell(x + 1, y).numberOfVisits();
         }
         
@@ -193,6 +233,11 @@ public final class DepthfirstSearch {
         return true;
     }
     
+    
+    /** Check if all neighbouring cells have been visited.
+     *
+     * @return false if not, else true
+     */
     public boolean checkIfAllVisited() {
         boolean upper = false;
         boolean left = false;
