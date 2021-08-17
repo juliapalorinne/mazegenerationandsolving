@@ -2,7 +2,6 @@ package mazeSolving;
 
 import maze.Cell;
 import maze.Maze;
-import mazeSolving.WallFollower;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
