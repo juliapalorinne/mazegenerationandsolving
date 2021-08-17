@@ -25,8 +25,7 @@ public class TremauxsAlgorithm {
      * @param maze a new maze
      */
     public TremauxsAlgorithm(Maze maze) {
-        this.queue = new Stack();
-        
+        this.queue = new Stack();        
         this.maze = maze;
     }
     
@@ -50,12 +49,10 @@ public class TremauxsAlgorithm {
             return false;
         }
         
-        currentCell.addToRoute();
-        direction = 2;
-        
         while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
-            search();
-            if (currentCell.numberOfVisits() > 2) {
+            if (possibleToMove()) {
+                search();
+            } else {
                 return false;
             }
         }
@@ -64,12 +61,12 @@ public class TremauxsAlgorithm {
     }
     
     
-    /** Search for unvisited cell neighbouring current cell.
+    /** Search for available cell neighbouring current cell.
      * Move to cell and repeat search.
      */
     public void search() {
         if (direction == 0) {
-            if (checkIfLeftAndRightWall()) {
+            if (leftAndRightWall()) {
                 currentCell.visit();
                 if (moveUp()) {
                    search();
@@ -78,7 +75,7 @@ public class TremauxsAlgorithm {
                 chooseDirection();
             }
         } else if (direction == 1) {
-            if (checkIfUpperAndLowerWall()) {
+            if (upperAndLowerWall()) {
                 currentCell.visit();
                 if (moveLeft()) {
                     search();
@@ -87,7 +84,7 @@ public class TremauxsAlgorithm {
                 chooseDirection();
             }
         } else if (direction == 2) {
-            if (checkIfLeftAndRightWall()) {
+            if (leftAndRightWall()) {
                 currentCell.visit();
                 if (moveDown()) {
                    search();    
@@ -96,7 +93,7 @@ public class TremauxsAlgorithm {
                 chooseDirection();
             }
         } else if (direction == 3) {
-            if (checkIfUpperAndLowerWall()) {
+            if (upperAndLowerWall()) {
                 currentCell.visit();
                 if (moveRight()) {
                     search();
@@ -138,7 +135,7 @@ public class TremauxsAlgorithm {
      */
     public boolean moveUp() {
         if (currentCell.getY() > 0 && currentCell.getUpperWall() == false) {
-            if (!checkIfVisitedTwice(0)) {
+            if (!visitedTwice(0)) {
                 currentCell = maze.getCell(currentCell.getX(), currentCell.getY() - 1);
                 direction = 0;
                 return true;
@@ -154,7 +151,7 @@ public class TremauxsAlgorithm {
      */
     public boolean moveLeft() {
         if (currentCell.getLeftWall() == false) {
-            if (!checkIfVisitedTwice(1)) {
+            if (!visitedTwice(1)) {
                 currentCell = maze.getCell(currentCell.getX() - 1, currentCell.getY());
                 direction = 1;
                 return true;
@@ -170,7 +167,7 @@ public class TremauxsAlgorithm {
      */
     public boolean moveDown() {
         if (currentCell.getLowerWall() == false) {
-            if (!checkIfVisitedTwice(2)) {
+            if (!visitedTwice(2)) {
                 currentCell = maze.getCell(currentCell.getX(), currentCell.getY() + 1);
                 direction = 2;
                 return true;
@@ -186,7 +183,7 @@ public class TremauxsAlgorithm {
      */
     public boolean moveRight() {
         if (currentCell.getRightWall() == false) {
-            if (!checkIfVisitedTwice(3)) {
+            if (!visitedTwice(3)) {
                 currentCell = maze.getCell(currentCell.getX() + 1, currentCell.getY());
                 direction = 3;
                 return true;
@@ -212,7 +209,7 @@ public class TremauxsAlgorithm {
      * @param direction number between 0 and 3
      * @return false if not, else true
      */
-    public boolean checkIfVisitedTwice(int direction) {
+    public boolean visitedTwice(int direction) {
         int visits = -1;
         int x = currentCell.getX();
         int y = currentCell.getY();
@@ -238,7 +235,7 @@ public class TremauxsAlgorithm {
      *
      * @return true if yes, false if no
      */
-    public boolean checkIfUpperAndLowerWall() {
+    public boolean upperAndLowerWall() {
         if (currentCell.getLowerWall() == true
                 && currentCell.getUpperWall() == true) {
             return true;
@@ -251,12 +248,58 @@ public class TremauxsAlgorithm {
      *
      * @return true if yes, false if no
      */
-    public boolean checkIfLeftAndRightWall() {
+    public boolean leftAndRightWall() {
         if (currentCell.getLeftWall() == true
                 && currentCell.getRightWall() == true) {
             return true;
         }
         return false;
+    }
+    
+    
+    /** Check if possible to move.
+     *
+     * @return true if yes, false if no
+     */
+    public boolean possibleToMove() {
+        int blockedDirections = 0;
+        
+        if (currentCell.getX() > 0) {
+            if (currentCell.getUpperWall() == true || visitedTwice(0)) {
+                blockedDirections++;
+            }
+        } else {
+            blockedDirections++;
+        }
+        
+        if (currentCell.getX() > 0) {
+            if (currentCell.getLeftWall() == true || visitedTwice(1)) {
+                blockedDirections++;
+            }
+        } else {
+            blockedDirections++;
+        }
+        
+        if (currentCell.getY() < maze.getHeight() - 1) {
+            if (currentCell.getLowerWall() == true || visitedTwice(2)) {
+                blockedDirections++;
+            }
+        } else {
+            blockedDirections++;
+        }
+        
+        if (currentCell.getX() < maze.getWidth() - 1) {
+            if (currentCell.getRightWall() == true || visitedTwice(3)) {
+                blockedDirections++;
+            }
+        } else {
+            blockedDirections++;
+        }
+        
+        if (blockedDirections == 4) {
+            return false;
+        }
+        return true;
     }
     
     
@@ -267,9 +310,9 @@ public class TremauxsAlgorithm {
     public boolean findFirstCell() {
         for (int i = 0; i < maze.getWidth(); i++) {
             if (maze.getCell(i, 0).getUpperWall() == false) {
-                queue.push(maze.getCell(i, 0));
                 firstCell = maze.getCell(i, 0);
                 currentCell = maze.getCell(i, 0);
+                direction = 2;
                 return true;
             }
         }

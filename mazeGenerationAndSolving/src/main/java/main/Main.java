@@ -3,6 +3,7 @@ package main;
 import mazeGeneration.DepthfirstSearch;
 import mazeGeneration.KruskalsAlgorithm;
 import maze.Maze;
+import mazeSolving.TremauxsAlgorithm;
 import mazeSolving.WallFollower;
 
 
@@ -52,6 +53,18 @@ public class Main {
         
         follower = new WallFollower(maze);
         follower.run();
+        maze.printMaze();
+        System.out.println("");
+        
+        kruskal = new KruskalsAlgorithm(20, 10);
+        kruskal.runSimpleMaze();
+        
+        maze = kruskal.maze;
+        maze.printMaze();
+        System.out.println("");
+        
+        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
+        tremaux.run();
         maze.printMaze();
     }
     

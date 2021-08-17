@@ -37,6 +37,7 @@ public class TremauxsAlgorithmTest {
         
         search.currentCell = maze.getCell(0, 0);
         search.firstCell = maze.getCell(0, 0);
+        search.lastCell = maze.getCell(2, 2);
         search.direction = 2;
     }
     
@@ -49,10 +50,9 @@ public class TremauxsAlgorithmTest {
         maze.getCell(2, 0).removeUpperWall();
         
         assertTrue(search.findFirstCell());
-        Cell cell = (Cell) search.queue.pop(); 
+        Cell cell = search.firstCell;
         assertTrue(cell.getY() == 0);
         assertTrue(cell.getX() == 2);
-        // System.out.println("1");
     }
     
     @Test
@@ -67,7 +67,6 @@ public class TremauxsAlgorithmTest {
         Cell cell = search.lastCell;
         assertTrue(cell.getY() == 2);
         assertTrue(cell.getX() == 1);
-        // System.out.println("2");
     }
     
     @Test
@@ -78,6 +77,19 @@ public class TremauxsAlgorithmTest {
         }
     }
     
+    @Test
+    public void leftAndRightWallReturnsCorrectAnswer() {
+        assertTrue(search.leftAndRightWall());
+        search.currentCell = maze.getCell(0, 1);
+        assertFalse(search.leftAndRightWall());
+    }
+    
+    @Test
+    public void upperAndLowerWallReturnsCorrectAnswer() {
+        assertFalse(search.upperAndLowerWall());
+        search.currentCell = maze.getCell(1, 2);
+        assertTrue(search.upperAndLowerWall());
+    }
     
     @Test
     public void moveUpWorksCorrectly() {
@@ -150,47 +162,41 @@ public class TremauxsAlgorithmTest {
         assertTrue(search.currentCell.getX() == 2);
     }
     
-//    @Test
-//    public void chooseDirectionStaysWithinTheMaze() {
-//        for (int i = 0; i < 5; i++) {
-//            search.chooseDirection();
-//            assertTrue(search.x >= 0 && search.x < 50);
-//            assertTrue(search.y >= 0 && search.y < 50);
-//        }
-//        
-//        search.x = 40;
-//        search.y = 40;
-//        for (int i = 0; i < 7; i++) {
-//            search.chooseDirection();
-//            assertTrue(search.x >= 0 && search.x < 50);
-//            assertTrue(search.y >= 0 && search.y < 50);
-//        }
-//        // System.out.println("6");
-//    }
-//    
-//    
-//    @Test
-//    public void chooseDirectionChoosesFreeCell() {
-//        for (int i = 0; i < 5; i++) {
-//            search.chooseDirection();
-//            Maze maze = search.maze;
-//            Cell c = maze.getCell(search.x, search.y);
-//            int visited = c.numberOfVisits();
-//            assertTrue(visited == 0);
-//            c.visit();
-//        }
-//        
-//        search.x = 40;
-//        search.y = 40;
-//        for (int i = 0; i < 7; i++) {
-//            search.chooseDirection();
-//            Maze maze = search.maze;
-//            Cell c = maze.getCell(search.x, search.y);
-//            int visited = c.numberOfVisits();
-//            assertTrue(visited == 0);
-//            c.visit();
-//        }
-//        // System.out.println("7");
-//    }
+    @Test
+    public void chooseDirectionStaysWithinTheMaze() {
+        for (int i = 0; i < 10; i++) {
+            search.chooseDirection();
+            assertTrue(search.currentCell.getX() >= 0 && search.currentCell.getX() < 3);
+            assertTrue(search.currentCell.getY() >= 0 && search.currentCell.getY() < 3);
+        }
+    }
     
+    
+    @Test
+    public void chooseDirectionChoosesCellNotVisitedTwice() {
+        search.currentCell = search.maze.getCell(1, 1);
+        search.maze.getCell(1, 0).visit();
+        search.maze.getCell(1, 0).visit();
+        
+        for (int i = 0; i < 4; i++) {
+            search.chooseDirection();
+            int visited = search.currentCell.numberOfVisits();
+            assertTrue(visited < 2);
+            assertFalse(search.currentCell.getX() == 1 && search.currentCell.getY() == 0);
+            search.currentCell.visit();
+        }
+    }
+    
+    @Test
+    public void possibleToMoveReturnsCorrectAnswer() {
+        assertTrue(search.possibleToMove());
+        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
+        search.search();
+        assertTrue(search.possibleToMove());
+        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
+        search.search();
+        assertTrue(search.possibleToMove());
+        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
+        search.search();
+    }
 }
