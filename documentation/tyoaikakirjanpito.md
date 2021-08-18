@@ -17,5 +17,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 13.8.2021 | Kruskalin algoritmi ja sen testit | 3,5 h
 16.8.2021 | Javadoc, Checkstyle-korjauksia ja Trémauxin algoritmin aloitus | 3 h
 17.8.2021 | Trémauxin algoritmia ja sen testejä | 3 h
+18.8.2021 | Trémauxin algoritmin korjailua, uuden labyrinttiluokan luominen sen testailuun sekä lyhimmän polun etsintään tarkoitettu syvyyshaku | 5,5 h
  | | 
-**Yhteensä** | | **48,5 h**
+**Yhteensä** | | **54 h**

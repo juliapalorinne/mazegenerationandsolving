@@ -4,6 +4,7 @@ import mazeGeneration.DepthfirstSearch;
 import mazeGeneration.KruskalsAlgorithm;
 import maze.Maze;
 import mazeGeneration.LoopedMaze;
+import mazeSolving.BreadthfirstSearch;
 import mazeSolving.TremauxsAlgorithm;
 import mazeSolving.WallFollower;
 
@@ -20,6 +21,10 @@ public class Main {
      */
     public static void main(String[] args) {
         
+        
+        // Create simple maze with depth-first search
+        // Solve it with wall-follower
+        
         DepthfirstSearch search = new DepthfirstSearch(20, 10);
         search.run();
 
@@ -31,6 +36,11 @@ public class Main {
         follower.run();
         simpleMaze.printMaze();
         System.out.println("");
+        
+        
+        
+        // Create simple maze with Kruskal's algorithm
+        // Solve it with wall-follower
         
         
         KruskalsAlgorithm kruskal = new KruskalsAlgorithm(20, 10);
@@ -45,6 +55,12 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
+        
+        
+        // Create maze with loops with Kruskal's algorithm
+        // Solve it with wall-follower
+        
+        
         kruskal = new KruskalsAlgorithm(20, 10);
         kruskal.runLoopedMaze();
         
@@ -57,16 +73,57 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
-        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
-        loopedMaze.run();
         
-        maze = loopedMaze.maze;
+        
+        // Create simple maze with Kruskal's algorithm
+        // Solve it with breadth-first search
+        
+        
+        kruskal = new KruskalsAlgorithm(20, 10);
+        kruskal.runSimpleMaze();
+        
+        maze = kruskal.maze;
         maze.printMaze();
         System.out.println("");
         
-        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
-        tremaux.run();
+        BreadthfirstSearch findShortestPath = new BreadthfirstSearch(maze);
+        findShortestPath.run();
         maze.printMaze();
+        System.out.println("");
+        
+        
+        
+        // Create maze with loops with Kruskal's algorithm
+        // Solve it with breadth-first search
+        
+        
+        kruskal = new KruskalsAlgorithm(20, 10);
+        kruskal.runLoopedMaze();
+        
+        maze = kruskal.maze;
+        maze.printMaze();
+        System.out.println("");
+        
+        findShortestPath = new BreadthfirstSearch(maze);
+        findShortestPath.run();
+        maze.printMaze();
+        System.out.println("");
+        
+        
+        
+        
+        
+        
+//        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
+//        loopedMaze.run();
+//        
+//        maze = loopedMaze.maze;
+//        maze.printMaze();
+//        System.out.println("");
+//        
+//        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
+//        tremaux.run();
+//        maze.printMaze();
     }
     
 }
