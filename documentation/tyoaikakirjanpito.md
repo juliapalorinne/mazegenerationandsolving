@@ -16,5 +16,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 12.8.2021 | Wall-follower loppuun ja Kruskalin algoritmin aloitus | 4,5 h
 13.8.2021 | Kruskalin algoritmi ja sen testit | 3,5 h
 16.8.2021 | Javadoc, Checkstyle-korjauksia ja Trémauxin algoritmin aloitus | 3 h
+17.8.2021 | Trémauxin algoritmia ja sen testejä | 3 h
  | | 
-**Yhteensä** | | **45,5 h**
+**Yhteensä** | | **48,5 h**

@@ -3,6 +3,7 @@ package main;
 import mazeGeneration.DepthfirstSearch;
 import mazeGeneration.KruskalsAlgorithm;
 import maze.Maze;
+import mazeGeneration.LoopedMaze;
 import mazeSolving.TremauxsAlgorithm;
 import mazeSolving.WallFollower;
 
@@ -56,10 +57,10 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
-        kruskal = new KruskalsAlgorithm(20, 10);
-        kruskal.runSimpleMaze();
+        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
+        loopedMaze.run();
         
-        maze = kruskal.maze;
+        maze = loopedMaze.maze;
         maze.printMaze();
         System.out.println("");
         
