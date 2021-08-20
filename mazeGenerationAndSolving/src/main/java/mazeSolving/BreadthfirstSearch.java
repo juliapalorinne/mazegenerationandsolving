@@ -54,6 +54,10 @@ public class BreadthfirstSearch {
         
         search();
         
+        if (distance[lastCell.getY()][lastCell.getX()] == 0) {
+            return false;
+        }
+        
         return true;
     }
     
@@ -191,7 +195,6 @@ public class BreadthfirstSearch {
                 return true;
             }
         }
-        System.out.println("No first cell");
         return false;
     }
     
@@ -208,7 +211,6 @@ public class BreadthfirstSearch {
                 return true;
             }
         }
-        System.out.println("No last cell");
         return false;
     }
     

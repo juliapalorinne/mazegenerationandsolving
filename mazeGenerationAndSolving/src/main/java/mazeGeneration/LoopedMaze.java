@@ -6,12 +6,17 @@ import maze.Maze;
 
 
 /** Class for creating a maze with loops.
+ * Created for the testing of Trémaux's algorithm.
  *
  * @author julia
  */
 public class LoopedMaze {
     public Maze maze;
     public int cells;
+    public int firstRow;
+    public int lastRow;
+    public int firstColumn;
+    public int lastColumn;
     
     public LoopedMaze(int width, int height) {
         this.cells = width * height;
@@ -19,8 +24,8 @@ public class LoopedMaze {
     }
     
     
-    /** Run the Kruskal's algorithm to find a simple maze.
-     * Then remove chosen walls.
+    /** Create looped maze.
+     *
      */
     public void run() {
         generateRoutes();
@@ -28,11 +33,102 @@ public class LoopedMaze {
     
     
     public void generateRoutes() {
-        int horizontalRoutes = getRandomNumber(maze.getHeight() / 3) + (maze.getHeight() / 5);
-        int verticalRoutes = getRandomNumber(maze.getWidth() / 3) + (maze.getWidth() / 5);
+        generateVerticalRoutes();
+        generateHorizontalRoutes();
         
-        for (int i = 0; i < horizontalRoutes; i++) {
+        maze.getCell(firstColumn, 0).removeUpperWall();
+        maze.getCell(lastColumn, maze.getHeight() - 1).removeLowerWall();
+        
+        removeEndingsToUp();
+        removeEndingsToLeft();
+        removeEndingsToDown();
+        removeEndingsToRight();
+    }
+    
+    
+    public void removeEndingsToLeft() {
+        for (int j = 0; j < maze.getHeight(); j++) {
+            maze.addWall(maze.getCell(firstColumn, j), 1);
+        }
+    }
+    
+    
+    public void removeEndingsToRight() {
+        for (int j = 0; j < maze.getHeight(); j++) {
+            maze.addWall(maze.getCell(lastColumn, j), 3);
+        }
+    }
+    
+    public void removeEndingsToDown() {
+        for (int j = 0; j < lastColumn; j++) {
+            maze.addWall(maze.getCell(j, lastRow), 2);
+        }
+    }
+    
+    
+    public void removeEndingsToUp() {
+        for (int j = maze.getWidth() - 1; j > firstColumn; j--) {
+            maze.addWall(maze.getCell(j, firstRow), 0);
+        }
+    }
+    
+    
+    public void generateVerticalRoutes() {
+        int verticalRoutes = getRandomNumber(maze.getWidth() / 3)
+                + (maze.getWidth() / 5);
+        
+        firstColumn = maze.getWidth();
+        lastColumn = 0;
+            
+        for (int i = 0; i < verticalRoutes; i++) {
             int route = 0;
+            int accepted = 0;
+            
+            while (accepted < 2) {
+                accepted = 0;
+                route = getRandomNumber(maze.getWidth());
+                
+                if (maze.getCell(route, 0).getLowerWall() == true) {
+                    if (route > 0) {
+                        if (maze.getCell(route - 1, 0).getLowerWall() == true) {
+                            accepted++;
+                        }
+                    } else {
+                        accepted++;
+                    }
+                    
+                    if (route < maze.getWidth() - 1) {
+                        if (maze.getCell(route + 1, 0).getLowerWall() == true) {
+                            accepted++;
+                        }
+                    } else {
+                        accepted++;
+                    }
+                }
+            }
+            
+            if (route < firstColumn) {
+                firstColumn = route;
+            }
+            if (route > lastColumn) {
+                lastColumn = route;
+            }
+            
+            for (int j = 0; j < maze.getHeight() - 1; j++) {
+                maze.removeWall(maze.getCell(route, j), 2);
+            }
+        }
+    }
+    
+    public void generateHorizontalRoutes() {
+        int routes = getRandomNumber(maze.getHeight() / 3)
+                + (maze.getHeight() / 5);
+        
+        firstRow = maze.getHeight();
+        lastRow = 0;
+        
+        for (int i = 0; i < routes; i++) {
+            int route = getRandomNumber(maze.getHeight());
             int accepted = 0;
             
             while (accepted < 2) {
@@ -41,9 +137,9 @@ public class LoopedMaze {
                 
                 if (maze.getCell(0, route).getRightWall() == true) {
                     if (route > 0) {
-                         if (maze.getCell(0, route - 1).getRightWall() == true) {
+                        if (maze.getCell(0, route - 1).getRightWall() == true) {
                             accepted++;
-                         }
+                        }
                     } else {
                         accepted++;
                     }
@@ -57,56 +153,15 @@ public class LoopedMaze {
                     }
                 }
             }
+            if (route < firstRow) {
+                firstRow = route;
+            }
+            if (route > lastRow) {
+                lastRow = route;
+            }
             
             for (int j = 0; j < maze.getWidth() - 1; j++) {
                 maze.removeWall(maze.getCell(j, route), 3);
-            }
-        }
-        
-        for (int i = 0; i < verticalRoutes; i++) {
-            int route = 0;
-            int accepted = 0;
-            
-            while (accepted < 2) {
-                route = getRandomNumber(maze.getWidth());
-                accepted = 0;
-                
-                if (maze.getCell(route, 0).getLowerWall() == true) {
-                    if (route > 0) {
-                         if (maze.getCell(route - 1, 0).getLowerWall() == true) {
-                            accepted++;
-                         }
-                    } else {
-                        accepted++;
-                    }
-                    
-                    if (route < maze.getWidth() - 1) {
-                        if (maze.getCell(route + 1, 0).getLowerWall() == true) {
-                            accepted++;
-                        }
-                    } else {
-                        accepted++;
-                    }
-                    
-                }
-            }
-            
-            for (int j = 0; j < maze.getHeight() - 1; j++) {
-                maze.removeWall(maze.getCell(route, j), 2);
-            }
-        }
-        
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, 0).getLowerWall() == false || maze.getCell(i, 0).getRightWall() == false) {
-                maze.getCell(i, 0).removeUpperWall();
-                break;
-            }
-        }
-        
-        for (int i = maze.getWidth() - 1; i >= 0; i--) {
-            if (maze.getCell(i, maze.getHeight() - 1).getUpperWall() == false || maze.getCell(i, 0).getRightWall() == false) {
-                maze.getCell(i, maze.getHeight() - 1).removeLowerWall();
-                break;
             }
         }
     }

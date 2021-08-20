@@ -1,7 +1,5 @@
 package maze;
 
-import java.util.ArrayList;
-
 /** Class creates an empty maze with given dimensions.
  *
  * @author julia
@@ -25,7 +23,7 @@ public class Maze {
     }
 
     
-    /** Removes a wall from the given cell and its neighbour.
+    /** Remove a wall from the given cell and its neighbour.
      *
      * @param cell the cell where the wall is removed
      * @param dir number between 0 and 3 for direction
@@ -50,8 +48,34 @@ public class Maze {
             cell.removeRightWall();
             cells[y][x + 1].removeLeftWall();
         }
+    }
+    
+    
+    /** Add a wall from the given cell and its neighbour.
+     *
+     * @param cell the cell where the wall is removed
+     * @param dir number between 0 and 3 for direction
+     */
+    public void addWall(Cell cell, int dir) {
+        int x = cell.getX();
+        int y = cell.getY();
         
-        cells[y][x] = cell;
+        if (dir == 0 && y > 0) {
+            cell.addUpperWall();
+            cells[y - 1][x].addLowerWall();
+        }
+        if (dir == 1 && x > 0) {
+            cell.addLeftWall();
+            cells[y][x - 1].addRightWall();
+        }
+        if (dir == 2 && y < height - 1) {
+            cell.addLowerWall();
+            cells[y + 1][x].addUpperWall();
+        }
+        if (dir == 3 && x < width - 1) {
+            cell.addRightWall();
+            cells[y][x + 1].addLeftWall();
+        }
     }
     
     

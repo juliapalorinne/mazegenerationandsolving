@@ -73,52 +73,85 @@ public class TremauxsAlgorithm {
      * Move to cell and repeat search.
      */
     public void search() {
+        System.out.println(direction);
         if (direction == 0) {
-            if (leftAndRightWall()) {
-                currentCell.visit();
-                if (moveUp()) {
-                   search();
-                } else {
-                    chooseDirection();
-                }
-            } else {
-                chooseDirection();
-            }
+            continueUp();
         } else if (direction == 1) {
-            if (upperAndLowerWall()) {
-                currentCell.visit();
-                if (moveLeft()) {
-                    search();
-                } else {
-                    chooseDirection();
-                }
-            } else {
-                chooseDirection();
-            }
+            continueLeft();
         } else if (direction == 2) {
-            if (leftAndRightWall()) {
-                currentCell.visit();
-                if (moveDown()) {
-                   search();    
-                } else {
-                    chooseDirection();
-                }
-            } else {
-                chooseDirection();
-            }
+            continueDown();
         } else if (direction == 3) {
-            if (upperAndLowerWall()) {
-                currentCell.visit();
-                if (moveRight()) {
-                    search();
-                } else {
-                    chooseDirection();
-                }
-            } else {
-                chooseDirection();
-            }
+            continueRight();
         }
         
+    }
+    
+    
+    /** Continue up or choose new direction.
+     *
+     */
+    public void continueUp() {
+        if (leftAndRightWall()) {
+            currentCell.visit();
+            if (moveUp()) {
+                search();
+            } else {
+                chooseDirection();
+            }
+        } else {
+            chooseDirection();
+        }
+    }
+    
+    
+    /** Continue left or choose new direction.
+     *
+     */
+    public void continueLeft() {
+        if (upperAndLowerWall()) {
+            currentCell.visit();
+            if (moveLeft()) {
+                search();
+            } else {
+                chooseDirection();
+            }
+        } else {
+            chooseDirection();
+        }
+    }
+    
+    
+    /** Continue down or choose new direction.
+     *
+     */
+    public void continueDown() {
+        if (leftAndRightWall()) {
+            currentCell.visit();
+            if (moveDown()) {
+                search();    
+            } else {
+                chooseDirection();
+            }
+        } else {
+            chooseDirection();
+        }
+    }
+    
+    
+    /** Continue right or choose new direction.
+     *
+     */
+    public void continueRight() {
+        if (upperAndLowerWall()) {
+            currentCell.visit();
+            if (moveRight()) {
+                search();
+            } else {
+                chooseDirection();
+            }
+        } else {
+            chooseDirection();
+        }
     }
     
     

@@ -1,8 +1,8 @@
 package main;
 
+import maze.Maze;
 import mazeGeneration.DepthfirstSearch;
 import mazeGeneration.KruskalsAlgorithm;
-import maze.Maze;
 import mazeGeneration.LoopedMaze;
 import mazeSolving.BreadthfirstSearch;
 import mazeSolving.TremauxsAlgorithm;
@@ -111,19 +111,20 @@ public class Main {
         
         
         
+        // Create maze with loops
+        // Solve it with Trémaux's algorithm
         
         
+        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
+        loopedMaze.run();
         
-//        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
-//        loopedMaze.run();
-//        
-//        maze = loopedMaze.maze;
-//        maze.printMaze();
-//        System.out.println("");
-//        
-//        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
-//        tremaux.run();
-//        maze.printMaze();
+        maze = loopedMaze.maze;
+        maze.printMaze();
+        System.out.println("");
+        
+        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
+        tremaux.run();
+        maze.printMaze();
     }
     
 }

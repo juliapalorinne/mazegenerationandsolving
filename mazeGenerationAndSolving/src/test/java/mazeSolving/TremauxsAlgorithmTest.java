@@ -190,13 +190,42 @@ public class TremauxsAlgorithmTest {
     @Test
     public void possibleToMoveReturnsCorrectAnswer() {
         assertTrue(search.possibleToMove());
-        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
         search.search();
         assertTrue(search.possibleToMove());
-        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
         search.search();
         assertTrue(search.possibleToMove());
-        System.out.println(search.currentCell.getX() + ", " + search.currentCell.getY());
         search.search();
+        assertTrue(search.possibleToMove());
+        search.search();
+        assertTrue(search.possibleToMove());
+        
+        search.currentCell = search.maze.getCell(1, 2);
+        search.maze.getCell(0, 2).visit();
+        search.maze.getCell(0, 2).visit();
+        assertFalse(search.possibleToMove());
     }
+    
+    @Test
+    public void findRouteReturnsFalseIfFirstCellMissing() {
+        maze.getCell(0, 0).addUpperWall();
+        assertTrue(search.findRoute() == false);
+    }
+    
+    @Test
+    public void findRouteReturnsFalseIfLastCellMissing() {
+        maze.getCell(2, 2).addLowerWall();
+        assertTrue(search.findRoute() == false);
+    }
+    
+//    @Test
+//    public void findRouteReturnsFalseIfNoRouteIsFound() {
+//        maze.getCell(1, 1).addUpperWall();
+//        maze.getCell(1, 0).addLowerWall();
+//        assertTrue(search.findRoute() == false);
+//    }
+    
+//    @Test
+//    public void findRouteReturnsTrueIfRouteIsFound() {
+//        assertTrue(search.findRoute() == true);
+//    }
 }
