@@ -18,5 +18,7 @@ Päivämäärä | Tehtävä | Käytetty aika
 16.8.2021 | Javadoc, Checkstyle-korjauksia ja Trémauxin algoritmin aloitus | 3 h
 17.8.2021 | Trémauxin algoritmia ja sen testejä | 3 h
 18.8.2021 | Trémauxin algoritmin korjailua, uuden labyrinttiluokan luominen sen testailuun sekä lyhimmän polun etsintään tarkoitettu syvyyshaku | 5,5 h
+19.8.2021 | Testejä | 1 h
+20.8.2021 | Testejä | 1 h
  | | 
-**Yhteensä** | | **54 h**
+**Yhteensä** | | **55 h**

@@ -115,16 +115,16 @@ public class Main {
         // Solve it with Trémaux's algorithm
         
         
-        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
-        loopedMaze.run();
-        
-        maze = loopedMaze.maze;
-        maze.printMaze();
-        System.out.println("");
-        
-        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
-        tremaux.run();
-        maze.printMaze();
+//        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
+//        loopedMaze.run();
+//        
+//        maze = loopedMaze.maze;
+//        maze.printMaze();
+//        System.out.println("");
+//        
+//        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
+//        tremaux.run();
+//        maze.printMaze();
     }
     
 }
