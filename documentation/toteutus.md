@@ -30,6 +30,7 @@ Tällä hetkellä ohjelma koostuu pääohjelmasta ja yhdeksästä luokasta, joit
 - Algoritmien vertailu kirjoittamatta
 - Trémauxin algoritmi ei toimi
 - Omat tietorakenteet toteuttamatta
+- Cucumber-testit pahasti kesken
 - Käyttöliittymästä toteutettu vasta hyvin yksinkertainen komentoriviltä toimiva versio
 - Syötteiden tarkastusta ei ole vielä toteutettu
 - Labyrintin tulostus ei ole vielä input-output-luokan vastuulla
