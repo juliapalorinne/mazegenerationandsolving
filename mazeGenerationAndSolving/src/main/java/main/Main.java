@@ -25,6 +25,7 @@ public class Main {
         // Create simple maze with depth-first search
         // Solve it with wall-follower
         
+        System.out.println("Depth-first search:");
         DepthfirstSearch search = new DepthfirstSearch(20, 10);
         search.run();
 
@@ -32,9 +33,11 @@ public class Main {
         simpleMaze.printMaze();
         System.out.println("");
         
+        System.out.println("Solved with wall follower:");
         WallFollower follower = new WallFollower(simpleMaze);
         follower.run();
         simpleMaze.printMaze();
+        System.out.println("");
         System.out.println("");
         
         
@@ -42,7 +45,7 @@ public class Main {
         // Create simple maze with Kruskal's algorithm
         // Solve it with wall-follower
         
-        
+        System.out.println("Kruskal's algorithm:");
         KruskalsAlgorithm kruskal = new KruskalsAlgorithm(20, 10);
         kruskal.runSimpleMaze();
 
@@ -50,9 +53,11 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
+        System.out.println("Solved with wall follower:");
         follower = new WallFollower(maze);
         follower.run();
         maze.printMaze();
+        System.out.println("");
         System.out.println("");
         
         
@@ -60,7 +65,7 @@ public class Main {
         // Create maze with loops with Kruskal's algorithm
         // Solve it with wall-follower
         
-        
+        System.out.println("Kruskal's algorithm with loops:");
         kruskal = new KruskalsAlgorithm(20, 10);
         kruskal.runLoopedMaze();
         
@@ -68,9 +73,11 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
+        System.out.println("Solved with wall follower:");
         follower = new WallFollower(maze);
         follower.run();
         maze.printMaze();
+        System.out.println("");
         System.out.println("");
         
         
@@ -78,7 +85,7 @@ public class Main {
         // Create simple maze with Kruskal's algorithm
         // Solve it with breadth-first search
         
-        
+        System.out.println("Kruskal's algorithm:");
         kruskal = new KruskalsAlgorithm(20, 10);
         kruskal.runSimpleMaze();
         
@@ -86,9 +93,11 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
+        System.out.println("Solved with breadth-first search:");
         BreadthfirstSearch findShortestPath = new BreadthfirstSearch(maze);
         findShortestPath.run();
         maze.printMaze();
+        System.out.println("");
         System.out.println("");
         
         
@@ -96,7 +105,7 @@ public class Main {
         // Create maze with loops with Kruskal's algorithm
         // Solve it with breadth-first search
         
-        
+        System.out.println("Kruskal's algorithm with loops:");
         kruskal = new KruskalsAlgorithm(20, 10);
         kruskal.runLoopedMaze();
         
@@ -104,9 +113,11 @@ public class Main {
         maze.printMaze();
         System.out.println("");
         
+        System.out.println("Solved with breadth-first search:");
         findShortestPath = new BreadthfirstSearch(maze);
         findShortestPath.run();
         maze.printMaze();
+        System.out.println("");
         System.out.println("");
         
         

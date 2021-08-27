@@ -9,18 +9,34 @@ import mazeGeneration.*;
 import mazeSolving.*;
 
 public class Stepdefs {
-    DepthfirstSearch depthfirst;
-    KruskalsAlgorithm simpleKruskal;
-    KruskalsAlgorithm loopedKruskal;
+    BreadthfirstSearch breadthfirst;
+    Maze maze;
     
     // StubIo io;
         
     @Before
     public void setup(){
-        depthfirst = new DepthfirstSearch(50, 50);
-        simpleKruskal = new KruskalsAlgorithm(50, 50);
-        loopedKruskal = new KruskalsAlgorithm(50, 50);
+        Cell[][] cells = new Cell[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                cells[j][i] = new Cell(i, j);
+            }
+        }
         
+        maze = new Maze(cells);
+        maze.getCell(0, 0).removeUpperWall();
+        maze.removeWall(maze.getCell(0, 0), 2);
+        maze.removeWall(maze.getCell(0, 1), 2);
+        maze.removeWall(maze.getCell(0, 1), 3);
+        maze.removeWall(maze.getCell(0, 2), 3);
+        maze.removeWall(maze.getCell(1, 1), 0);
+        maze.removeWall(maze.getCell(1, 0), 3);
+        maze.removeWall(maze.getCell(2, 0), 2);
+        maze.removeWall(maze.getCell(2, 1), 2);
+        maze.getCell(2, 2).removeLowerWall();
+        
+        breadthfirst = new BreadthfirstSearch(maze);
+        breadthfirst.firstCell = maze.getCell(0, 0);
     }
     
     @Given("command printMaze is given")

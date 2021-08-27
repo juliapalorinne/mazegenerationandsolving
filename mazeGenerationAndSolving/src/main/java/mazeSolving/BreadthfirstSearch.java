@@ -15,6 +15,7 @@ public class BreadthfirstSearch {
     public int numberOfCells;
     public int[][] distance;
     public int[][] previousCell;
+    public boolean loops = false;
      
     
     /** Start a new breadth-first search with given maze.
@@ -124,6 +125,8 @@ public class BreadthfirstSearch {
                 previousCell[cell.getY() - 1][cell.getX()] = 2;
                 maze.getCell(cell.getX(), cell.getY() - 1).visit();
                 visited++;
+            } else if (previousCell[cell.getY()][cell.getX()] != 0) {
+                loops = true;
             }
         }
     }
@@ -141,6 +144,8 @@ public class BreadthfirstSearch {
                 previousCell[cell.getY()][cell.getX() - 1] = 3;
                 maze.getCell(cell.getX() - 1, cell.getY()).visit();
                 visited++;
+            } else if (previousCell[cell.getY()][cell.getX()] != 1) {
+                loops = true;
             }
         }
     }
@@ -158,6 +163,8 @@ public class BreadthfirstSearch {
                 previousCell[cell.getY() + 1][cell.getX()] = 0;
                 maze.getCell(cell.getX(), cell.getY() + 1).visit();
                 visited++;
+            } else if (previousCell[cell.getY()][cell.getX()] != 2) {
+                loops = true;
             }
         }
     }
@@ -175,6 +182,8 @@ public class BreadthfirstSearch {
                 previousCell[cell.getY()][cell.getX() + 1] = 1;
                 maze.getCell(cell.getX() + 1, cell.getY()).visit();
                 visited++;
+            } else if (previousCell[cell.getY()][cell.getX()] != 3) {
+                loops = true;
             }
         }
     }

@@ -3,7 +3,9 @@ package mazeGeneration;
 import mazeGeneration.KruskalsAlgorithm;
 import java.util.ArrayList;
 import maze.Cell;
+import maze.Maze;
 import maze.Wall;
+import mazeSolving.BreadthfirstSearch;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -73,16 +75,47 @@ public class KruskalsAlgorithmTest {
         }
     }
     
-    
     @Test
     public void generateSimpleMazeGeneratesMazeWithoutLoops() {
-        ArrayList<Wall> list = search.findSimpleMaze();
+        search.runSimpleMaze();
+        Maze maze = search.maze;
         
-        
+        BreadthfirstSearch findLoops = new BreadthfirstSearch(maze);
+        findLoops.run();
+        assertFalse(findLoops.loops);
     }
     
     @Test
     public void generateLoopedMazeGeneratesMazeWithLoops() {
-        ArrayList<Wall> list = search.findLoopedMaze();
+        search.runLoopedMaze();
+        Maze maze = search.maze;
+        
+        BreadthfirstSearch findLoops = new BreadthfirstSearch(maze);
+        findLoops.run();
+        assertTrue(findLoops.loops);
     }
+    
+    @Test
+    public void correctWallsAreRemoved() {
+        ArrayList<Wall> walls = search.findSimpleMaze();
+        search.removeWallsFromMaze(walls);
+        
+        Maze maze = search.maze;
+        
+        for (Wall wall : walls) {
+            int x1 = wall.getCell1().getX();
+            int y1 = wall.getCell1().getY();
+            int x2 = wall.getCell2().getX();
+            int y2 = wall.getCell2().getY();
+            
+            if (x1 < x2) {
+                assertFalse(maze.getCell(x1, y1).getRightWall());
+            }
+            if (y1 < y2) {
+                assertFalse(maze.getCell(x1, y1).getLowerWall());
+            }
+        }
+    }
+    
+    
 }
