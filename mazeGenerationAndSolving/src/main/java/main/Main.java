@@ -125,7 +125,7 @@ public class Main {
         // Create maze with loops
         // Solve it with Trémaux's algorithm
         
-        
+//        System.out.println("Maze with loops:");
 //        LoopedMaze loopedMaze = new LoopedMaze(20, 10);
 //        loopedMaze.run();
 //        
@@ -133,6 +133,7 @@ public class Main {
 //        maze.printMaze();
 //        System.out.println("");
 //        
+//        System.out.println("Solved with Tremaux's algorithm:");
 //        TremauxsAlgorithm tremaux = new TremauxsAlgorithm(maze);
 //        tremaux.run();
 //        maze.printMaze();

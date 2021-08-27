@@ -39,13 +39,13 @@ public class Stepdefs {
         breadthfirst.firstCell = maze.getCell(0, 0);
     }
     
-    @Given("command printMaze is given")
-    public void commandPrintMazeIsGiven() {
+    @Given("a maze is created with a depth-first search")
+    public void mazeIsGeneratedWithDepthfirstSearch() {
         
     }
-   
-    @When("maze is printed")
-    public void mazeIsPrinted() {
+    
+    @When("command printMaze is selected")
+    public void commandPrintMazeIsGiven() {
         
     }
       

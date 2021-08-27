@@ -37,14 +37,51 @@ public class TremauxsAlgorithm {
         if (findRoute() == false) {
             System.out.println("No routes");
         } else {
-            for (int i = 0; i < maze.getWidth(); i++) {
-                for (int j = 0; j < maze.getHeight(); j++) {
-                    if (maze.getCell(i, j).numberOfVisits() < 2) {
-                        maze.getCell(i, j).addToRoute();
+            System.out.println("Route found");
+            getPath();
+        }
+    }
+    
+    
+    public void getPath() {
+        int x = lastCell.getX();
+        int y = lastCell.getY();
+        
+        while (x != firstCell.getX() || y != firstCell.getY()) {
+            maze.getCell(x, y).addToRoute();
+            
+            for (int i = 0; i <= 3; i++) {
+                if (i == 0 && y > 0) {
+                    if (maze.getCell(x, y - 1).getUpperWall() == false
+                            && maze.getCell(x, y - 1).numberOfVisits() < 2) {
+                        y--;
+                    }
+                }
+                
+                if (i == 1 && x > 0) {
+                    if (maze.getCell(x - 1, y).getLeftWall() == false
+                            && maze.getCell(x - 1, y).numberOfVisits() < 2) {
+                        x--;
+                    }
+                }
+                
+                if (i == 2 && y < maze.getHeight() - 1) {
+                    if (maze.getCell(x, y + 1).getLowerWall() == false
+                            && maze.getCell(x, y + 1).numberOfVisits() < 2) {
+                        y++;
+                    }
+                }
+                
+                if (i == 3 && x < maze.getWidth() - 1) {
+                    if (maze.getCell(x + 1, y).getRightWall() == false
+                            && maze.getCell(x + 1, y).numberOfVisits() < 2) {
+                        x++;
                     }
                 }
             }
         }
+        
+        maze.getCell(x, y).addToRoute();
     }
     
     
@@ -57,12 +94,8 @@ public class TremauxsAlgorithm {
             return false;
         }
         
-        while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
-            if (possibleToMove()) {
-                search();
-            } else {
-                return false;
-            }
+        while (possibleToMove()) {
+            search();
         }
         
         return true;
@@ -73,7 +106,6 @@ public class TremauxsAlgorithm {
      * Move to cell and repeat search.
      */
     public void search() {
-        System.out.println(direction);
         if (direction == 0) {
             continueUp();
         } else if (direction == 1) {
@@ -83,7 +115,6 @@ public class TremauxsAlgorithm {
         } else if (direction == 3) {
             continueRight();
         }
-        
     }
     
     

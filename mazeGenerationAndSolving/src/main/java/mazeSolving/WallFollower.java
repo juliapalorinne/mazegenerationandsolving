@@ -12,8 +12,7 @@ import maze.Maze;
  */
 public class WallFollower {
     
-    Stack queue;
-    ArrayDeque directions;
+    int direction;
     Maze maze;
     Cell firstCell;
     Cell lastCell;
@@ -25,9 +24,6 @@ public class WallFollower {
      * @param maze a new maze
      */
     public WallFollower(Maze maze) {
-        this.queue = new Stack();
-        this.directions = new ArrayDeque();
-        
         this.maze = maze;
     }
     
@@ -52,7 +48,7 @@ public class WallFollower {
         }
         
         currentCell.addToRoute();
-        directions.addLast(2);
+        direction = 2;
         
         while (currentCell.getX() != lastCell.getX() || currentCell.getY() != lastCell.getY()) {
             findDirection();
@@ -69,7 +65,7 @@ public class WallFollower {
      * Up for 0, left for 1, down for 2 and right for 3.
      */
     public void findDirection() {
-        int dir = (int) directions.getLast();
+        int dir = direction;
         boolean found = false;
         
         while (found == false) {
@@ -77,7 +73,7 @@ public class WallFollower {
                 if (currentCell.getRightWall() == false) {
                     currentCell = maze.getCell(currentCell.getX() + 1, currentCell.getY());
                     found = true;
-                    directions.addLast(3);
+                    direction = 3;
                 } else {
                     dir++;
                 }
@@ -90,7 +86,7 @@ public class WallFollower {
                     } else {
                         currentCell = maze.getCell(currentCell.getX(), currentCell.getY() - 1);
                         found = true;
-                        directions.addLast(0);
+                        direction = 0;
                     }
                 } else {
                     dir++;
@@ -100,7 +96,7 @@ public class WallFollower {
                 if (currentCell.getLeftWall() == false) {
                     currentCell = maze.getCell(currentCell.getX() - 1, currentCell.getY());
                     found = true;
-                    directions.addLast(1);
+                    direction = 1;
                 } else {
                     dir++;
                 }
@@ -109,14 +105,13 @@ public class WallFollower {
                 if (currentCell.getLowerWall() == false) {
                     currentCell = maze.getCell(currentCell.getX(), currentCell.getY() + 1);
                     found = true;
-                    directions.addLast(2);
+                    direction = 2;
                 } else {
                     dir = 0;
                 }
             }
         }
         currentCell.visit();
-        queue.push(currentCell);
         currentCell.addToRoute();
     }
     
@@ -128,7 +123,6 @@ public class WallFollower {
     public boolean findFirstCell() {
         for (int i = 0; i < maze.getWidth(); i++) {
             if (maze.getCell(i, 0).getUpperWall() == false) {
-                queue.push(maze.getCell(i, 0));
                 firstCell = maze.getCell(i, 0);
                 currentCell = maze.getCell(i, 0);
                 return true;

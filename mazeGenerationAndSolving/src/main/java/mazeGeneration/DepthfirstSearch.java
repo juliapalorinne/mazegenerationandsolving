@@ -13,7 +13,7 @@ import maze.Maze;
 public final class DepthfirstSearch {  
     
     public Maze maze;
-    public Stack stack;
+    public Stack<Cell> stack;
     public int x;
     public int y;
     public int visited;
@@ -97,7 +97,7 @@ public final class DepthfirstSearch {
         
         if (visited < cells) {
             if (checkIfAllVisited() == true) {
-                Cell c = (Cell) stack.pop();
+                Cell c = stack.pop();
                 x = c.getX();
                 y = c.getY();
             } else {
