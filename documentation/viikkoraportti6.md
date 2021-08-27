@@ -1,3 +1,5 @@
 # Viikkoraportti 6
 
-Tällä viikolla minulla ei ollut paljoa aikaa tehdä tämän kurssin töitä, mutta sain testejä tehtyä eteenpäin. En vieläkään saanut Trémauxin algoritmia toimimaan, joten jätän sen ehkä pois lopullisesta työstä ja ehkä valitsen sen tilalle jonkin toisen algoritmin, jos vielä ehdin ohjelmoida sellaisen.
+Tällä viikolla minulla ei ollut perjantaita lukuunottamatta juuri lainkaan aikaa tehdä tämän kurssin töitä, mutta sain projektia silti edistymään yllättävän hyvin. Nostin yksikkötestauksen kattavuuden yli 80 % kaikille algoritmeja ja labyrinttia käsitteleville luokille ja lisäksi aloitin hieman Cucumber-testejä tulosteiden ja syötteiden testausta varten. Tein ohjelmalle lisäksi yksinkertaisen komentoriviltä toimivan käyttöliittymän.
+
+En vieläkään saanut Trémauxin algoritmia toimimaan, joten jätän sen ehkä pois lopullisesta työstä ja ehkä valitsen sen tilalle jonkin toisen algoritmin, jos vielä ehdin ohjelmoida sellaisen. Lisäksi omien tietorakenteiden toteutus jäi vielä ensi viikolle. Lopulliseen palautukseen haluaisin saada myös tehtyä jonkinlaisen paremman käyttöliittymän. Aloitin kurssin ensimmäisellä viikolla Java Spring -pohjaisen nettikäyttöliittymän tekemistä tälle ohjelmalle, mutta en ole ehtinyt vielä integroida sitä lopulliseen työhön, enkä ole varma kannattaako se enää vai koituuko siitä vain kohtuuttomasti ylimääräistä vaivaa.
