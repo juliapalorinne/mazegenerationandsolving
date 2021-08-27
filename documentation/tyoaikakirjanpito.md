@@ -20,5 +20,7 @@ Päivämäärä | Tehtävä | Käytetty aika
 18.8.2021 | Trémauxin algoritmin korjailua, uuden labyrinttiluokan luominen sen testailuun sekä lyhimmän polun etsintään tarkoitettu syvyyshaku | 5,5 h
 19.8.2021 | Testejä | 1 h
 20.8.2021 | Testejä | 1 h
+26.8.2021 | Testejä | 1 h
+27.8.2021 | Testejä ja Trémauxin algoritmia | 3 h
  | | 
-**Yhteensä** | | **55 h**
+**Yhteensä** | | **59 h**

@@ -45,11 +45,14 @@ jacocoTestReport {
         html.enabled true
 //        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
-//     afterEvaluate {
-//        classDirectories = files(classDirectories.files.collect {
-//            fileTree(dir: it, exclude: ['main/Main.java'])
-//        })
-//    }
+     afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                "main/Main.class",
+                "mazeGeneration/LoopedMaze.class"            
+            ])
+        }))
+    }
 }
 
 check.dependsOn jacocoTestReport

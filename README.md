@@ -26,6 +26,8 @@
 
 [Viikkoraportti 5](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/viikkoraportti5.md)
 
+[Viikkoraportti 6](https://github.com/juliapalorinne/mazegenerationandsolving/blob/master/documentation/viikkoraportti6.md)
+
 
  <br>
 
