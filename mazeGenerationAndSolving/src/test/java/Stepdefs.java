@@ -1,3 +1,4 @@
+import mazesolving.BreadthfirstSearch;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -5,8 +6,6 @@ import io.cucumber.java.en.Then;
 import static org.junit.Assert.*;
 import main.*;
 import maze.*;
-import mazeGeneration.*;
-import mazeSolving.*;
 
 public class Stepdefs {
     BreadthfirstSearch breadthfirst;

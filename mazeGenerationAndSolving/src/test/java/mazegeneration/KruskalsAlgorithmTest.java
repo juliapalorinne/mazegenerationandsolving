@@ -1,11 +1,10 @@
-package mazeGeneration;
+package mazegeneration;
 
-import mazeGeneration.KruskalsAlgorithm;
 import java.util.ArrayList;
 import maze.Cell;
 import maze.Maze;
 import maze.Wall;
-import mazeSolving.BreadthfirstSearch;
+import mazesolving.BreadthfirstSearch;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;

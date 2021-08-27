@@ -1,4 +1,4 @@
-package mazeSolving;
+package mazesolving;
 
 import java.util.Random;
 import java.util.Stack;
@@ -43,6 +43,9 @@ public class TremauxsAlgorithm {
     }
     
     
+    /** Get the path.
+     *
+     */
     public void getPath() {
         int x = lastCell.getX();
         int y = lastCell.getY();

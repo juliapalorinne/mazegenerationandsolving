@@ -21,6 +21,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 19.8.2021 | Testejä | 1 h
 20.8.2021 | Testejä | 1 h
 26.8.2021 | Testejä | 1 h
-27.8.2021 | Testejä ja Trémauxin algoritmia | 3 h
+27.8.2021 | Testejä, checkstyle ja javadoc, Trémauxin algoritmia sekä yksinkertainen komentoriviltä operoitava käyttöliittymä | 6 h
  | | 
-**Yhteensä** | | **59 h**
+**Yhteensä** | | **62 h**

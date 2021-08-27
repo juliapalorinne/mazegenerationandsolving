@@ -1,12 +1,8 @@
 package maze;
 
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -37,25 +33,25 @@ public class CellTest {
     @Test
     public void removeUpperWallRemovesCorrectWall() {
         cell1.removeUpperWall();
-        assertTrue(cell1.getUpperWall() == false);
+        assertFalse(cell1.getUpperWall());
     }
     
     @Test
     public void removeLeftWallRemovesCorrectWall() {
         cell1.removeLeftWall();
-        assertTrue(cell1.getLeftWall() == false);
+        assertFalse(cell1.getLeftWall());
     }
     
     @Test
     public void removeLowerWallRemovesCorrectWall() {
         cell1.removeLowerWall();
-        assertTrue(cell1.getLowerWall() == false);
+        assertFalse(cell1.getLowerWall());
     }
     
     @Test
     public void removeRightWallRemovesCorrectWall() {
         cell1.removeRightWall();
-        assertTrue(cell1.getRightWall() == false);
+        assertFalse(cell1.getRightWall());
     }
     
     

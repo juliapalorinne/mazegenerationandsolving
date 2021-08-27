@@ -1,8 +1,9 @@
-package mazeSolving;
+package mazesolving;
 
 import maze.Cell;
 import maze.Maze;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,44 +42,44 @@ public class BreadthfirstSearchTest {
     @Test
     public void findFirstCellFindsCell() {
         maze.getCell(0, 0).addUpperWall();
-        assertTrue(search.findFirstCell() == false);
+        assertFalse(search.findFirstCell());
         
         maze.getCell(2, 0).removeUpperWall();
         
-        assertTrue(search.findFirstCell() == true);
+        assertTrue(search.findFirstCell());
     }
     
     @Test
     public void findLastCellFindsCell() {
         maze.getCell(2, 2).addLowerWall();
-        assertTrue(search.findLastCell() == false);
+        assertFalse(search.findLastCell());
         
         maze.getCell(1, 2).removeLowerWall();
         
-        assertTrue(search.findLastCell() == true);
+        assertTrue(search.findLastCell());
     }
     
     @Test
     public void findRouteReturnsFalseIfFirstCellMissing() {
         maze.getCell(0, 0).addUpperWall();
-        assertTrue(search.findRoute() == false);
+        assertFalse(search.findRoute());
     }
     
     @Test
     public void findRouteReturnsFalseIfLastCellMissing() {
         maze.getCell(2, 2).addLowerWall();
-        assertTrue(search.findRoute() == false);
+        assertFalse(search.findRoute());
     }
     
     @Test
     public void findRouteReturnsFalseIfNoRouteIsFound() {
         maze.getCell(1, 1).addUpperWall();
         maze.getCell(1, 0).addLowerWall();
-        assertTrue(search.findRoute() == false);
+        assertFalse(search.findRoute());
     }
     
     @Test
     public void findRouteReturnsTrueIfRouteIsFound() {
-        assertTrue(search.findRoute() == true);
+        assertTrue(search.findRoute());
     }
 }

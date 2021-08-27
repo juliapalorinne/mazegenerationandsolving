@@ -1,4 +1,4 @@
-package mazeSolving;
+package mazesolving;
 
 import java.util.ArrayDeque;
 import java.util.Stack;

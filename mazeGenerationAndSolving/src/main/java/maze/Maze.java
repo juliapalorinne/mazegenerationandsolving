@@ -1,6 +1,6 @@
 package maze;
 
-/** Class creates an empty maze with given dimensions.
+/** Class for handling a maze.
  *
  * @author julia
  */
@@ -12,7 +12,7 @@ public class Maze {
     public Cell[][] cells;
     
     
-    /** Creates a maze with given cells.
+    /** Create a maze with given cells.
      *
      * @param cells array of cells
      */
@@ -79,7 +79,7 @@ public class Maze {
     }
     
     
-    /** Returns the cell with given coordinates.
+    /** Get the cell with given coordinates.
      *
      * @param x coordinate
      * @param y coordinate
@@ -99,8 +99,32 @@ public class Maze {
     }
     
     
-    /** Prints the maze.
-     * Character # for wall and o for empty space.
+    /**
+     * Reset visits to all cells.
+     */
+    public void resetVisits() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                cells[j][i].resetVisits();
+            }
+        }
+    }
+    
+    
+    /**
+     * Remove all cells from routes.
+     */
+    public void resetRoutes() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                cells[j][i].removeFromRoute();
+            }
+        }
+    }
+    
+    
+    /** Print the maze.
+     * Character # for wall and o for route.
      */
     public void printMaze() {
         

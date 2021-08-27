@@ -1,4 +1,4 @@
-package mazeGeneration;
+package mazegeneration;
 
 import java.util.Random;
 import java.util.Stack;
@@ -43,11 +43,7 @@ public final class DepthfirstSearch {
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
         
-        for (int i = 0; i < maze.getWidth(); i++) {
-            for (int j = 0; j < maze.getHeight(); j++) {
-                maze.getCell(i, j).resetVisits();
-            }
-        }
+        maze.resetVisits();
     }
 
     

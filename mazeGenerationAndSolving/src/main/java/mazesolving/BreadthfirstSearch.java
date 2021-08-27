@@ -1,11 +1,13 @@
-package mazeSolving;
+package mazesolving;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import maze.Cell;
 import maze.Maze;
 
-
+/** Class for solving a maze with breadth-first search.
+ *
+ * @author julia
+ */
 public class BreadthfirstSearch {
     
     public Maze maze;
@@ -67,6 +69,9 @@ public class BreadthfirstSearch {
     }
     
     
+    /** Get shortest path.
+     *
+     */
     public void getShortestPath() {
         int x = lastCell.getX();
         int y = lastCell.getY();
@@ -131,10 +136,6 @@ public class BreadthfirstSearch {
                 visited++;
             } else if (previousCell[cell.getY()][cell.getX()] != 0) {
                 loops = true;
-                if (distance[cell.getY() - 1][cell.getX()] > distance[cell.getY()][cell.getX()] + 1) {
-                    distance[cell.getY() - 1][cell.getX()] = distance[cell.getY()][cell.getX()] + 1;
-                    previousCell[cell.getY() - 1][cell.getX()] = 2;
-                }
             }
         }
     }
@@ -153,11 +154,7 @@ public class BreadthfirstSearch {
                 maze.getCell(cell.getX() - 1, cell.getY()).visit();
                 visited++;
             } else if (previousCell[cell.getY()][cell.getX()] != 1) {
-                loops = true;
-                if (distance[cell.getY()][cell.getX() - 1] > distance[cell.getY()][cell.getX()] + 1) {
-                    distance[cell.getY()][cell.getX() - 1] = distance[cell.getY()][cell.getX()] + 1;
-                    previousCell[cell.getY()][cell.getX() - 1] = 3;
-                }
+                loops = true;            
             }
         }
     }
@@ -177,10 +174,6 @@ public class BreadthfirstSearch {
                 visited++;
             } else if (previousCell[cell.getY()][cell.getX()] != 2) {
                 loops = true;
-                if (distance[cell.getY() + 1][cell.getX()] > distance[cell.getY()][cell.getX()] + 1) {
-                    distance[cell.getY() + 1][cell.getX()] = distance[cell.getY()][cell.getX()] + 1;
-                    previousCell[cell.getY() + 1][cell.getX()] = 0;
-                }
             }
         }
     }
@@ -200,10 +193,6 @@ public class BreadthfirstSearch {
                 visited++;
             } else if (previousCell[cell.getY()][cell.getX()] != 3) {
                 loops = true;
-                if (distance[cell.getY()][cell.getX() + 1] > distance[cell.getY()][cell.getX()] + 1) {
-                    distance[cell.getY()][cell.getX() + 1] = distance[cell.getY()][cell.getX()] + 1;
-                    previousCell[cell.getY()][cell.getX() + 1] = 1;
-                }
             }
         }
     }

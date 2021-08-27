@@ -1,4 +1,4 @@
-package mazeGeneration;
+package mazegeneration;
 
 import java.util.Random;
 import maze.Cell;

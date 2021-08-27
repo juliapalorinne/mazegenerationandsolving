@@ -39,6 +39,10 @@ jar {
     }
 }
 
+run {
+    standardInput = System.in
+}
+
 jacocoTestReport {
     reports {
         xml.enabled true
@@ -49,7 +53,7 @@ jacocoTestReport {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
                 "main/Main.class",
-                "mazeGeneration/LoopedMaze.class"            
+                "mazegeneration/LoopedMaze.class"
             ])
         }))
     }
@@ -60,6 +64,8 @@ check.dependsOn jacocoTestReport
 checkstyle {
     config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
     toolVersion '8.37'
+    maxWarnings = 10
+    checkstyleMain.source = "src/main/java/"
+    checkstyleMain.exclude "mazegeneration/LoopedMaze.java"
 }
-
 

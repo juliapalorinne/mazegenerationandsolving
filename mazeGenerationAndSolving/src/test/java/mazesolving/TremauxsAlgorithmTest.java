@@ -1,4 +1,4 @@
-package mazeSolving;
+package mazesolving;
 
 import maze.Cell;
 import maze.Maze;
@@ -208,13 +208,13 @@ public class TremauxsAlgorithmTest {
     @Test
     public void findRouteReturnsFalseIfFirstCellMissing() {
         maze.getCell(0, 0).addUpperWall();
-        assertTrue(search.findRoute() == false);
+        assertFalse(search.findRoute());
     }
     
     @Test
     public void findRouteReturnsFalseIfLastCellMissing() {
         maze.getCell(2, 2).addLowerWall();
-        assertTrue(search.findRoute() == false);
+        assertFalse(search.findRoute());
     }
     
 //    @Test

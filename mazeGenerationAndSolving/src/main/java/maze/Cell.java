@@ -119,6 +119,10 @@ public class Cell implements Comparable<Cell>  {
         this.inRoute = true;
     }
     
+    public void removeFromRoute() {
+        this.inRoute = false;
+    }
+    
     @Override
     public int compareTo(Cell cell) {
         return Integer.compare(this.number, cell.number);

@@ -1,4 +1,4 @@
-package mazeSolving;
+package mazesolving;
 
 import maze.Cell;
 import maze.Maze;

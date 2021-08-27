@@ -1,8 +1,8 @@
-package mazeGeneration;
+package mazegeneration;
 
 import maze.Cell;
 import maze.Maze;
-import mazeSolving.BreadthfirstSearch;
+import mazesolving.BreadthfirstSearch;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -35,49 +35,49 @@ public class DepthfirstSearchTest {
     
     @Test
     public void moveUpWorksCorrectly() {
-        assertTrue(search.moveUp() == false);
+        assertFalse(search.moveUp());
         assertTrue(search.y == 0);
         search.y = 5;
-        assertTrue(search.moveUp() == true);
+        assertTrue(search.moveUp());
         assertTrue(search.y == 4);
         search.maze.getCell(0, 3).visit();
-        assertTrue(search.moveUp() == false);
+        assertFalse(search.moveUp());
         assertTrue(search.y == 4);
     }
     
     @Test
     public void moveLeftWorksCorrectly() {
-        assertTrue(search.moveLeft() == false);
+        assertFalse(search.moveLeft());
         assertTrue(search.x == 0);
         search.x = 5;
-        assertTrue(search.moveLeft() == true);
+        assertTrue(search.moveLeft());
         assertTrue(search.x == 4);
         search.maze.getCell(0, 3).visit();
-        assertTrue(search.moveUp() == false);
+        assertFalse(search.moveUp());
         assertTrue(search.x == 4);
     }
     
     @Test
     public void moveDownWorksCorrectly() {
-        assertTrue(search.moveDown() == true);
+        assertTrue(search.moveDown());
         assertTrue(search.y == 1);
         search.maze.getCell(0, 2).visit();
-        assertTrue(search.moveDown() == false);
+        assertFalse(search.moveDown());
         assertTrue(search.y == 1);
         search.y = 49;
-        assertTrue(search.moveDown() == false);
+        assertFalse(search.moveDown());
         assertTrue(search.y == 49);
     }
     
     @Test
     public void moveRightWorksCorrectly() {
-        assertTrue(search.moveRight() == true);
+        assertTrue(search.moveRight());
         assertTrue(search.x == 1);
         search.maze.getCell(2, 0).visit();
-        assertTrue(search.moveRight() == false);
+        assertFalse(search.moveRight());
         assertTrue(search.x == 1);
         search.x = 49;
-        assertTrue(search.moveRight() == false); 
+        assertFalse(search.moveRight()); 
         assertTrue(search.x == 49);
     }
     
@@ -124,41 +124,41 @@ public class DepthfirstSearchTest {
     
     @Test
     public void checkIfAllVisitedReturnsCorrectAnswer() {
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(1, 0).visit();
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(0, 1).visit();
-        assertTrue(search.checkIfAllVisited() == true);
+        assertTrue(search.checkIfAllVisited());
         
         search.x = 2;
         search.y = 2;
         
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(1, 2).visit();
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(2, 1).visit();
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(3, 2).visit();
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(2, 3).visit();
-        assertTrue(search.checkIfAllVisited() == true);  
+        assertTrue(search.checkIfAllVisited());  
         
         search.x = 49;
         search.y = 49;
         
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(49, 48).visit();
-        assertTrue(search.checkIfAllVisited() == false);
+        assertFalse(search.checkIfAllVisited());
         
         search.maze.getCell(48, 49).visit();
-        assertTrue(search.checkIfAllVisited() == true);
+        assertTrue(search.checkIfAllVisited());
     }
     
     @Test
