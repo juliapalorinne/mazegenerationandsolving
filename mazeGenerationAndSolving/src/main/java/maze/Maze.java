@@ -1,5 +1,8 @@
 package maze;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Class for handling a maze.
  *
  * @author julia
@@ -21,7 +24,28 @@ public class Maze {
         this.height = cells.length;
         this.width = cells[0].length;
     }
-
+    
+       
+    public int getWidth() {
+        return this.width;
+    }
+    
+    
+    public int getHeight() {
+        return this.height;
+    }
+    
+    
+    /** Get the cell with given coordinates.
+     *
+     * @param x coordinate
+     * @param y coordinate
+     * @return a cell
+     */
+    public Cell getCell(int x, int y) {
+        return cells[y][x];
+    }
+    
     
     /** Remove a wall from the given cell and its neighbour.
      *
@@ -79,23 +103,38 @@ public class Maze {
     }
     
     
-    /** Get the cell with given coordinates.
+     /** Get the number of visits to the next cell.
      *
-     * @param x coordinate
-     * @param y coordinate
-     * @return a cell
+     * @param cell the current cell
+     * @param dir number between 0 and 3 for direction
+     * @return the number of visits
      */
-    public Cell getCell(int x, int y) {
-        return cells[y][x];
-    }
-    
-    
-    public int getWidth() {
-        return this.width;
-    }
-    
-    public int getHeight() {
-        return this.height;
+    public int visitsToNextCell(Cell cell, int dir) {
+        int x = cell.getX();
+        int y = cell.getY();
+        
+        if (dir == 0 && y > 0) {
+            if (cell.getUpperWall() == false) {
+                return cells[y - 1][x].numberOfVisits();
+            }
+        }
+        if (dir == 1 && x > 0) {
+            if (cell.getLeftWall() == false) {
+                return cells[y][x - 1].numberOfVisits();
+            }
+        }
+        if (dir == 2 && y < height - 1) {
+            if (cell.getLowerWall() == false) {
+                return cells[y + 1][x].numberOfVisits();
+            }
+        }
+        if (dir == 3 && x < width - 1) {
+            if (cell.getRightWall() == false) {
+                return cells[y][x + 1].numberOfVisits();
+            }
+        }
+        
+        return -1;
     }
     
     
@@ -167,5 +206,65 @@ public class Maze {
             System.out.print("#\r\n");
             System.out.println(s + "#");
         }
+    }
+    
+    
+    /** Maze to string.
+     * Character # for wall and o for route.
+     * 
+     * @return the maze as string
+     */
+    public List<String> mazeToString() {
+        ArrayList<String> rows = new ArrayList<>();
+        
+        String current = "";
+        
+        for (int i = 0; i < width; i++) {
+            if (cells[0][i].getUpperWall() == true) {
+                current = current + "##";
+            } else if (cells[0][i].checkIfInRoute() == false) {
+                current = current + "# ";
+            } else {
+                current = current + "#o";
+            }            
+        }
+        
+        current = current + "#";
+        rows.add(current);
+        
+        
+        for (int j = 0; j < height; j++) {
+            current = "";
+            String next = "";
+            
+            for (int i = 0; i < width; i++) {
+                Cell c = cells[j][i];
+                
+                if (c.getLeftWall() == true) {
+                    current = current + "#";
+                } else {
+                    current = current + " ";
+                }
+                
+                if (c.checkIfInRoute() == true) {
+                    current = current + "o";
+                } else {
+                    current = current + " ";
+                }
+                
+                if (c.getLowerWall() == true) {
+                    next = next + "##";
+                } else {
+                    next = next + "# ";
+                }
+            }
+            current = current + "#";
+            next = next + "#";
+            
+            rows.add(current);
+            rows.add(next);
+        }
+        
+        return rows;
     }
 }

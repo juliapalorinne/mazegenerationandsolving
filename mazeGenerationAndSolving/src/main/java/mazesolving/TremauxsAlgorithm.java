@@ -10,14 +10,9 @@ import maze.Maze;
  *
  * @author julia
  */
-public class TremauxsAlgorithm {
+public class TremauxsAlgorithm extends MazeSolvingAlgorithm {
     
     Stack queue;
-    int direction;
-    Maze maze;
-    Cell firstCell;
-    Cell lastCell;
-    Cell currentCell;
     
     
     /** Start a new Trémaux's algorithm with given maze.
@@ -97,6 +92,7 @@ public class TremauxsAlgorithm {
             return false;
         }
         
+        direction = 2;
         while (possibleToMove()) {
             search();
         }
@@ -385,38 +381,4 @@ public class TremauxsAlgorithm {
         return true;
     }
     
-    
-    /** Find a cell from the first row with upper wall missing.
-     *
-     * @return true if first cell found, false if not
-     */
-    public boolean findFirstCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, 0).getUpperWall() == false) {
-                firstCell = maze.getCell(i, 0);
-                currentCell = maze.getCell(i, 0);
-                direction = 2;
-                return true;
-            }
-        }
-        System.out.println("No first cell");
-        return false;
-    }
-    
-    
-    /** Find a cell from the last row with lower wall missing.
-     *
-     * @return true if last cell found, false if not
-     */
-    
-    public boolean findLastCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, maze.getHeight() - 1).getLowerWall() == false) {
-                lastCell = maze.getCell(i, maze.getHeight() - 1);
-                return true;
-            }
-        }
-        System.out.println("No last cell");
-        return false;
-    }
 }

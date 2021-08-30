@@ -3,21 +3,18 @@ package mazegeneration;
 import java.util.Random;
 import java.util.Stack;
 import maze.Cell;
-import maze.Maze;
 
 
 /** Randomized depth-first search for creating a maze.
  *
  * @author julia
  */
-public final class DepthfirstSearch {  
+public final class DepthfirstSearch extends MazeGenerationAlgorithm {  
     
-    public Maze maze;
     public Stack<Cell> stack;
     public int x;
     public int y;
     public int visited;
-    public int cells;
 
     
     /** Create a new maze with given dimensions.
@@ -46,26 +43,6 @@ public final class DepthfirstSearch {
         maze.resetVisits();
     }
 
-    
-    /** Generate a new maze with given dimensions.
-     *
-     * @param width number of cells
-     * @param height number of cells
-     */
-    public void generateNewMaze(int width, int height) {
-        this.cells = width * height;
-        
-        Cell[][] cellArray = new Cell[height][width];
-        
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = new Cell(i, j);
-                cellArray[j][i] = cell;
-            }
-        }
-        this.maze = new Maze(cellArray);
-    }
-    
     
     /** Generate routes.
      * Continue until all cells visited.

@@ -1,8 +1,5 @@
 package mazesolving;
 
-import java.util.ArrayDeque;
-import java.util.Stack;
-import maze.Cell;
 import maze.Maze;
 
 
@@ -10,13 +7,7 @@ import maze.Maze;
  *
  * @author julia
  */
-public class WallFollower {
-    
-    int direction;
-    Maze maze;
-    Cell firstCell;
-    Cell lastCell;
-    Cell currentCell;
+public class WallFollower extends MazeSolvingAlgorithm {
     
     
     /** Start a new wall-follower with given maze.
@@ -115,37 +106,4 @@ public class WallFollower {
         currentCell.addToRoute();
     }
     
-    
-    /** Find a cell from the first row with upper wall missing.
-     *
-     * @return true if first cell found, false if not
-     */
-    public boolean findFirstCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, 0).getUpperWall() == false) {
-                firstCell = maze.getCell(i, 0);
-                currentCell = maze.getCell(i, 0);
-                return true;
-            }
-        }
-        System.out.println("No first cell");
-        return false;
-    }
-    
-    
-    /** Find a cell from the last row with lower wall missing.
-     *
-     * @return true if last cell found, false if not
-     */
-    
-    public boolean findLastCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, maze.getHeight() - 1).getLowerWall() == false) {
-                lastCell = maze.getCell(i, maze.getHeight() - 1);
-                return true;
-            }
-        }
-        System.out.println("No last cell");
-        return false;
-    }
 }

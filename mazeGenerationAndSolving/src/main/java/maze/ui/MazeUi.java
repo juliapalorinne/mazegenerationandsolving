@@ -1,5 +1,6 @@
 package maze.ui;
 
+import java.util.List;
 import maze.Maze;
 import maze.io.Io;
 import mazegeneration.DepthfirstSearch;
@@ -60,14 +61,12 @@ public class MazeUi {
         int height = Integer.parseInt(heightInput.trim());
         int width = Integer.parseInt(widthInput.trim());
         
-        System.out.println("Maze generated with depth-first search:");
+        io.print("Maze generated with depth-first search:");
         DepthfirstSearch search = new DepthfirstSearch(width, height);
         search.run();
 
         Maze maze = search.maze;
-        maze.printMaze();
-        io.print("");
-        
+        printMaze(maze);
         solve(maze);
     }
     
@@ -78,14 +77,12 @@ public class MazeUi {
         int height = Integer.parseInt(heightInput.trim());
         int width = Integer.parseInt(widthInput.trim());
         
-        System.out.println("Maze generated with Kruskal's algorithm:");
+        io.print("Maze generated with Kruskal's algorithm:");
         KruskalsAlgorithm search = new KruskalsAlgorithm(width, height);
         search.runSimpleMaze();
 
         Maze maze = search.maze;
-        maze.printMaze();
-        io.print("");
-        
+        printMaze(maze);
         solve(maze);
     }
     
@@ -96,14 +93,12 @@ public class MazeUi {
         int height = Integer.parseInt(heightInput.trim());
         int width = Integer.parseInt(widthInput.trim());
         
-        System.out.println("Maze generated with Kruskal's algorithm:");
+        io.print("Maze generated with Kruskal's algorithm:");
         KruskalsAlgorithm search = new KruskalsAlgorithm(width, height);
         search.runLoopedMaze();
 
         Maze maze = search.maze;
-        maze.printMaze();
-        io.print("");
-        
+        printMaze(maze);
         solve(maze);
     }
     
@@ -133,9 +128,7 @@ public class MazeUi {
         io.print("Solved with wall follower:");
         WallFollower search = new WallFollower(maze);
         search.run();
-        maze.printMaze();
-        io.print("");
-        
+        printMaze(maze);
         maze.resetVisits();
         maze.resetRoutes();
     }
@@ -144,9 +137,7 @@ public class MazeUi {
         io.print("Solved with breadth-first search:");
         BreadthfirstSearch search = new BreadthfirstSearch(maze);
         search.run();
-        maze.printMaze();
-        io.print("");
-        
+        printMaze(maze);
         maze.resetVisits();
         maze.resetRoutes();
     }
@@ -164,7 +155,7 @@ public class MazeUi {
     
     
     private void printSolvingOptions() {
-        io.print("+-----------  ---------------+");
+        io.print("+----------------------------+");
         io.print("| Solve the maze with...     |");
         io.print("| 1. Wall-follower           |");
         io.print("| 2. Breadth-first search    |");
@@ -174,6 +165,12 @@ public class MazeUi {
     }
     
     
-    
+    private void printMaze(Maze maze) {
+        List<String> mazeToString = maze.mazeToString();
+        for (int i = 0 ; i < mazeToString.size(); i++) {
+            io.print(mazeToString.get(i));
+        }
+        io.print("");
+    }
     
 }

@@ -8,18 +8,10 @@ import maze.Maze;
  *
  * @author julia
  */
-public class BreadthfirstSearch {
+public class BreadthfirstSearch extends MazeSolvingAlgorithm {
     
-    public Maze maze;
     public ArrayDeque<Cell> queue;
-    public Cell firstCell;
-    public Cell lastCell;
-    public int visited;
-    public int numberOfCells;
-    public int[][] distance;
-    public int[][] previousCell;
-    public boolean loops = false;
-     
+    
     
     /** Start a new breadth-first search with given maze.
      *
@@ -27,11 +19,7 @@ public class BreadthfirstSearch {
      */
     public BreadthfirstSearch(Maze maze) {
         this.maze = maze;
-        this.numberOfCells = maze.getHeight() * maze.getWidth();
         this.queue = new ArrayDeque();
-        this.distance = new int[maze.getHeight()][maze.getWidth()];
-        this.previousCell = new int[maze.getHeight()][maze.getWidth()];
-        this.visited = 0;
     }
     
     
@@ -58,7 +46,9 @@ public class BreadthfirstSearch {
         if (!findFirstCell() || !findLastCell()) {
             return false;
         }
-        
+        queue.push(firstCell);
+        firstCell.visit();
+                
         search();
         
         if (distance[lastCell.getY()][lastCell.getX()] == 0) {
@@ -105,15 +95,12 @@ public class BreadthfirstSearch {
                 if (i == 0) {
                     moveUp(next);
                 }
-                
                 if (i == 1) {
                     moveLeft(next);
                 }
-                
                 if (i == 2) {
                     moveDown(next);
                 }
-                
                 if (i == 3) {
                     moveRight(next);
                 }
@@ -197,39 +184,5 @@ public class BreadthfirstSearch {
         }
     }
     
-    
-    /** Find a cell from the first row with upper wall missing.
-     *
-     * @return true if first cell found, false if not
-     */
-    public boolean findFirstCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, 0).getUpperWall() == false) {
-                queue.push(maze.getCell(i, 0));
-                firstCell = maze.getCell(i, 0);
-                maze.getCell(i, 0).visit();
-                distance[firstCell.getY()][firstCell.getX()] = 0;
-                previousCell[firstCell.getY()][firstCell.getX()] = 1;
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    
-    /** Find a cell from the last row with lower wall missing.
-     *
-     * @return true if last cell found, false if not
-     */
-    
-    public boolean findLastCell() {
-        for (int i = 0; i < maze.getWidth(); i++) {
-            if (maze.getCell(i, maze.getHeight() - 1).getLowerWall() == false) {
-                lastCell = maze.getCell(i, maze.getHeight() - 1);
-                return true;
-            }
-        }
-        return false;
-    }
     
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Random;
 import maze.Cell;
-import maze.Maze;
 import maze.Wall;
 
 
@@ -12,14 +11,11 @@ import maze.Wall;
  *
  * @author julia
  */
-public final class KruskalsAlgorithm {  
+public final class KruskalsAlgorithm extends MazeGenerationAlgorithm {  
     
-    public Maze maze;
     public ArrayList<Wall> walls;
     public PriorityQueue<Wall> queue;
-    public int cells;
     public int parts;
-    Cell[] parents;
 
     
     /** Create a new maze with given dimensions.
@@ -28,13 +24,12 @@ public final class KruskalsAlgorithm {
      * @param height of the maze
      */
     public KruskalsAlgorithm(int width, int height) {
-        this.cells = width * height;
         this.parts = width * height;
         this.walls = new ArrayList<>();
         this.queue = new PriorityQueue<>();
-        this.parents = new Cell[cells];
         
         generateNewMaze(width, height);
+        createWalls(width, height);
     }
     
     
@@ -73,30 +68,6 @@ public final class KruskalsAlgorithm {
         
         maze.getCell(0, 0).removeUpperWall();
         maze.getCell(maze.getWidth() - 1, maze.getHeight() - 1).removeLowerWall();
-    }
-    
-    
-    /** Generate a new maze with given dimensions.
-     *
-     * @param width number of cells
-     * @param height number of cells
-     */
-    public void generateNewMaze(int width, int height) {
-        int number = 0;
-        
-        Cell[][] cellArray = new Cell[height][width];
-        
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = new Cell(i, j);
-                cell.addNumber(number);
-                cellArray[j][i] = cell;
-                parents[number] = cell;
-                number++;
-            }
-        }
-        this.maze = new Maze(cellArray);
-        createWalls(width, height);
     }
     
     
