@@ -9,11 +9,8 @@ import static org.junit.Assert.*;
 import maze.*;
 import maze.io.StubIo;
 import maze.ui.MazeUi;
-import mazegeneration.DepthfirstSearch;
 
 public class Stepdefs {
-    BreadthfirstSearch breadthfirst;
-    DepthfirstSearch depthfirst;
     Maze maze;
     
     StubIo io;
@@ -67,9 +64,9 @@ public class Stepdefs {
         assertTrue(print.equals(expectedOutput));
     }
     
-    @Given("a depth-first search is selected")
-    public void depthfirstSearchIsSelected() {
-        inputLines.add("1");
+    @Given("the option {string} is selected")
+    public void optionSelected(String option) {
+        inputLines.add(option);
     }
     
     @Given("the height is set to {string}")
