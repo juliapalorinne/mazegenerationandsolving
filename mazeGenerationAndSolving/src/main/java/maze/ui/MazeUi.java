@@ -1,6 +1,7 @@
 package maze.ui;
 
 import java.util.List;
+import main.PerformanceTester;
 import maze.Maze;
 import maze.io.Io;
 import mazegeneration.DepthfirstSearch;
@@ -45,7 +46,9 @@ public class MazeUi {
                 startKruskalsAlgorithmWithoutLoops();
             } else if (command.trim().equals("3")) {
                 startKruskalsAlgorithmWithLoops();
-            } else if (command.trim().equals("4")) {
+            }  else if (command.trim().equals("4")) {
+                runPerformanceTests();
+            } else if (command.trim().equals("5")) {
                 break;
             } else {
                 io.print("Command does not exist! Try again.");
@@ -142,13 +145,22 @@ public class MazeUi {
         maze.resetRoutes();
     }
     
+    
+    private void runPerformanceTests() {
+        PerformanceTester test = new PerformanceTester();
+        test.run();
+        io.print(test.toString());
+    }
+    
+    
     private void printGenerationOptions() {
         io.print("+--------------------------------------+");
         io.print("| Create a maze with...                |");
         io.print("| 1. Depth-first search                |");
         io.print("| 2. Kruskal's algorithm (no loops)    |");
         io.print("| 3. Kruskal's algorithm (with loops)  |");
-        io.print("| 4. Quit                              |");
+        io.print("| 4. Run performance tests             |");
+        io.print("| 5. Quit                              |");
         io.print("+--------------------------------------+");
         io.print("");
     }

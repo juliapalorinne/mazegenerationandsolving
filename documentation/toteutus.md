@@ -2,10 +2,11 @@
 
 ## Ohjelman luokat
 
-Tällä hetkellä ohjelma koostuu pääohjelmasta ja yhdeksästä luokasta, joita käytetään labyrinttien muodostamisessa ja ratkaisemisessa. Lisäksi ohjelma sisältää input-output-luokan sekä käyttöliittymästä vastaavan luokan. Luokat on jaettu kuuteen pakkaukseen sen mukaan, mihin ohjelman osa-alueeseen ne kuuluvat. Tällä hetkellä luokat ovat seuraavat:
+Ohjelma koostuu pääohjelmasta ja seitsemästä luokasta, joita käytetään labyrinttien muodostamisessa ja ratkaisemisessa. Lisäksi ohjelma sisältää input-output-luokan, käyttöliittymästä vastaavan luokan sekä suorituskykytestaukseen tarkoitetun luokan. Luokat on jaettu kuuteen pakkaukseen sen mukaan, mihin ohjelman osa-alueeseen ne kuuluvat. Tällä hetkellä luokat ovat seuraavat:
 
 - Pakkaus *main*
     - **Main** pääohjelmalle
+    - **PerformanceTester** algoritmien suorituskyvyn testaamiseen
 - Pakkaus *maze*
     - **Cell** ruuduille, joista labyrintti muodostuu
     - **Maze** labyrintin muodostamiseen annetuista ruuduista
@@ -15,23 +16,20 @@ Tällä hetkellä ohjelma koostuu pääohjelmasta ja yhdeksästä luokasta, joit
 - Pakkaus *maze.ui*
     - **MazeUi** käyttöliittymän toteuttamiseen
 - Pakkaus *mazegeneration*
+    - Yläluokka **MazeGenerationAlgorithm** labyrintin luomiseen tarkoitettujen algoritmien yhteisten metodien toteuttamiseen
     - **DepthfirstSearch** labyrintin luomiseen satunnaistetun syvyyshaun avulla
     - **KruskalsAlgorithm** labyrintin luomiseen satunnaistetun Kruskalin algoritmin avulla
-    - **LoopedMaze** paljon luuppeja sisältävän labyrintin luomiseen Trémauxin algoritmin testaamista varten
 - Pakkaus *mazesolving*
+    - Yläluokka **MazeSolvingAlgorithm** labyrintin ratkaisemiseen tarkoitettujen algoritmien yhteisten metodien toteuttamiseen
     - **WallFollower** labyrintin ratkaisemiseen wall-follower-algoritmin avulla
     - **BreadthfirstSearch** labyrintin ratkaisemiseen ja lyhimmän polun etsimiseen leveyshaun avulla
-    - **TremauxsAlgorithm** labyrintin ratkaisemiseen Trémauxin algoritmin avulla
 
 
 
-## Ohjelman puutteet ja ongelmat
+## Ohjelman puutteet ja ongelmat sekä toteuttamatta jääneet tavoitteet
 
 - Algoritmien vertailu kirjoittamatta
-- Trémauxin algoritmi ei toimi
 - Omat tietorakenteet toteuttamatta
-- Cucumber-testit pahasti kesken
-- Käyttöliittymästä toteutettu vasta hyvin yksinkertainen komentoriviltä toimiva versio
-- Syötteiden tarkastusta ei ole vielä toteutettu
-- Labyrintin tulostus ei ole vielä input-output-luokan vastuulla
-- Käyttöliittymässä ei voi (vielä) visualisoida algoritmien toimintaa
+- Käyttöliittymästä toteutettu vain hyvin yksinkertainen komentoriviltä toimiva versio, joka tulostaa labyrintin merkkejä *#* ja *o* sekä välilyöntiä hyödyntäen
+- Syötteiden tarkastusta ei toteutettu
+- Käyttöliittymässä ei voi visualisoida algoritmien toimintaa

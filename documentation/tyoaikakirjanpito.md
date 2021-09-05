@@ -23,5 +23,6 @@ Päivämäärä | Tehtävä | Käytetty aika
 26.8.2021 | Testejä | 1 h
 27.8.2021 | Testejä, checkstyle ja javadoc, Trémauxin algoritmia sekä yksinkertainen komentoriviltä operoitava käyttöliittymä | 6 h
 30.8.2021 | Käyttöliittymän testit ja koodin siistimistä | 4 h
+5.9.2021 | Toimintakyvyn testit, algoritmien vertailun kirjoittaminen ja dokumentaation viimeistely | 4,5 h
  | | 
-**Yhteensä** | | **66 h**
+**Yhteensä** | | **70,5 h**

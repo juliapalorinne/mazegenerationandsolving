@@ -19,6 +19,7 @@ public class MazeSolvingAlgorithm {
     public int[][] distance;
     public int[][] previousCell;
     public boolean loops = false;
+    public boolean routes;
     public int direction;
     
     

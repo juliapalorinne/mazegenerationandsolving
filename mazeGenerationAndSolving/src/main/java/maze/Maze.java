@@ -103,41 +103,6 @@ public class Maze {
     }
     
     
-     /** Get the number of visits to the next cell.
-     *
-     * @param cell the current cell
-     * @param dir number between 0 and 3 for direction
-     * @return the number of visits
-     */
-    public int visitsToNextCell(Cell cell, int dir) {
-        int x = cell.getX();
-        int y = cell.getY();
-        
-        if (dir == 0 && y > 0) {
-            if (cell.getUpperWall() == false) {
-                return cells[y - 1][x].numberOfVisits();
-            }
-        }
-        if (dir == 1 && x > 0) {
-            if (cell.getLeftWall() == false) {
-                return cells[y][x - 1].numberOfVisits();
-            }
-        }
-        if (dir == 2 && y < height - 1) {
-            if (cell.getLowerWall() == false) {
-                return cells[y + 1][x].numberOfVisits();
-            }
-        }
-        if (dir == 3 && x < width - 1) {
-            if (cell.getRightWall() == false) {
-                return cells[y][x + 1].numberOfVisits();
-            }
-        }
-        
-        return -1;
-    }
-    
-    
     /**
      * Reset visits to all cells.
      */

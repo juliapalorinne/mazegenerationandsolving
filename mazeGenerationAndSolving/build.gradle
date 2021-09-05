@@ -3,7 +3,6 @@ plugins {
     id 'application'
     id 'jacoco'
     id 'checkstyle'
-//    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 mainClassName = 'main.Main'
@@ -12,7 +11,6 @@ mainClassName = 'main.Main'
 
 repositories {
     mavenCentral()
-//    jcenter()
 }
 
 project.ext {
@@ -47,13 +45,12 @@ jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled true
-//        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
      afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
                 "main/Main.class",
-                "mazegeneration/LoopedMaze.class"
+                "main/PerformanceTester.class"
             ])
         }))
     }
@@ -66,6 +63,6 @@ checkstyle {
     toolVersion '8.37'
     maxWarnings = 10
     checkstyleMain.source = "src/main/java/"
-    checkstyleMain.exclude "mazegeneration/LoopedMaze.java"
+    checkstyleMain.exclude "main/PerformanceTester.java"
 }
 

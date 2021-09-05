@@ -24,7 +24,9 @@ public class WallFollower extends MazeSolvingAlgorithm {
      */
     public void run() {
         if (findRoute() == false) {
-            System.out.println("No routes or the maze has loops.");            
+            routes = false;
+        } else {
+            routes = true;
         }
     }
     

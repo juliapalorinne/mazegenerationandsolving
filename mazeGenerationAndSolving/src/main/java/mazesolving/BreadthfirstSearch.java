@@ -28,8 +28,9 @@ public class BreadthfirstSearch extends MazeSolvingAlgorithm {
      */
     public void run() {
         if (findRoute() == false) {
-            System.out.println("No routes");
+            routes = false;
         } else {
+            routes = true;
             getShortestPath();
             // for (int i = 0; i < maze.getHeight() - 1; i++) {
             //     System.out.println(Arrays.toString(distance[i]));
