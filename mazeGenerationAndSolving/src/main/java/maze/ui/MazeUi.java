@@ -179,7 +179,7 @@ public class MazeUi {
     
     private void printMaze(Maze maze) {
         List<String> mazeToString = maze.mazeToString();
-        for (int i = 0 ; i < mazeToString.size(); i++) {
+        for (int i = 0; i < mazeToString.size(); i++) {
             io.print(mazeToString.get(i));
         }
         io.print("");

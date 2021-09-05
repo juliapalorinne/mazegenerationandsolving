@@ -176,7 +176,7 @@ public class Maze {
     
     /** Maze to string.
      * Character # for wall and o for route.
-     * 
+     *
      * @return the maze as string
      */
     public List<String> mazeToString() {
